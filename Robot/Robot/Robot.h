@@ -25,8 +25,11 @@ public:
 	void turn(float target, float initial);
 	void leave_box();
 	void init();
+	void get_light_reading();
+	void get_prox_reading();
+	void get_compass_reading();
 private:
-
+	int loop_count;
 };
 
 #endif
