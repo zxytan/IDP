@@ -22,6 +22,8 @@
     <!-- <ClInclude Include="$(MSBuildThisFileDirectory)Robot.h" /> -->
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)go_home.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)init.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)responses.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils.cpp" />
   </ItemGroup>

@@ -18,10 +18,16 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\zoeta\OneDrive\Documents\Cambridge\IB\Labs\IDP\Robot\Robot\utils.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)responses.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)responses.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)go_home.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
