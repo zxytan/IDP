@@ -24,7 +24,7 @@ public:
 	void yellow_response();
 	void wall_response();
 	void go_home();
-	void forward(float time); //includes use of PID library to stay on course
+	void forward(float dist, bool direction); //includes use of PID library to stay on course
 	void turn(float target, float initial);
 	void leave_box();
 	void init();
@@ -37,6 +37,8 @@ private:
 	float y_0_wall = 245;
 	float x_max_wall = 155;
 	float x_0_wall = 335;
+	void open_gates(); //check servo positions in these functions
+	void close_gates();
 };
 
 #endif
