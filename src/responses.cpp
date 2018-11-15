@@ -10,6 +10,7 @@ void Robot::yellow_response() {
 		delay(250);
 		digitalWrite(YELLOW_LED, LOW);
 		delay(250);
+	}
 
 	open_gates();
 	
