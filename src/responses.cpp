@@ -52,8 +52,9 @@ void Robot::red_response() {
 		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
 			yellow_response();
 			forward(10, 1);
+			i += 10;
 		}
 		delay(1000);
-
 	}
+	stop_motor();
 }
