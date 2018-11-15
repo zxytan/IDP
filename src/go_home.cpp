@@ -1,14 +1,4 @@
 #include "Robot.h"
-/*	go_to_wall() code
-start_motor();
-get_prox_reading(p_reading);
-for (p_reading < y_max_length) { //put in numerical value for y_max_length
-	get_prox_reading(p_reading);
-	delay(1000);
-}
-stop_motor();
-
-*/
 
 void Robot::go_home() {
 	float c_reading;
