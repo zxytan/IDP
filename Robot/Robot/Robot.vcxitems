@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <ItemsProjectGuid>{3e1d2016-5d27-4021-825f-87d85fefe553}</ItemsProjectGuid>
+    <ItemsProjectGuid>{464977e6-3be5-4df5-824d-94ac59f79a5d}</ItemsProjectGuid>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -15,16 +15,13 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="$(MSBuildThisFileDirectory)readme.txt" />
-    <Text Include="$(MSBuildThisFileDirectory)library.properties" />
-    <Text Include="$(MSBuildThisFileDirectory)Robot.h" />
+	<Text Include="$(MSBuildThisFileDirectory)library.properties" />
+  	<Text Include="$(MSBuildThisFileDirectory)Robot.h" />
   </ItemGroup>
-  <ItemGroup>
+ <ItemGroup>
     <!-- <ClInclude Include="$(MSBuildThisFileDirectory)Robot.h" /> -->
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)go_home.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)init.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)responses.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)utils.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Robot.cpp" />
   </ItemGroup>
-</Project>
+  </Project>
