@@ -19,11 +19,15 @@ void Robot::go_home() {
 		go_to_wall()
 	}
 	else {
-		if loop_count == 8 {
+		if loop_count < 8 { //less than 8
 			turn(y_max_wall, c_reading);
 			go_to_wall();
 			get_compass_reading(c_reading);
 			turn(x_0_wall, c_reading);
 		}
+		go_to_wall();
+		get_compass_reading(c_reading);
+		turn(y_0_wall, c_reading);
+		go_to_wall();
 	}
 }
