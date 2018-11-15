@@ -14,6 +14,15 @@
 	#include <WProgram.h>
 #endif
 
+#define YELLOW_LED 7
+#define RED_LED 6
+#define	YELLOW_MIN 500
+#define YELLOW_MAX 600
+#define RED_MIN 700
+#define RED_MAX 800
+#define SPEED 5 //cm/s (check)
+
+
 class Robot {
 public:
 	Robot() {
@@ -24,7 +33,8 @@ public:
 	void yellow_response();
 	void wall_response();
 	void go_home();
-	void forward(float dist, bool direction); //includes use of PID library to stay on course
+	void start_motor(bool direction);
+	void stop_motor();
 	void turn(float target, float initial);
 	void leave_box();
 	void init();
@@ -39,6 +49,8 @@ private:
 	float x_0_wall = 335;
 	void open_gates(); //check servo positions in these functions
 	void close_gates();
+	void forward(float dist, bool direction); //includes use of PID library to stay on course
+	void go_to_wall(float prox_reading);
 };
 
 #endif
