@@ -14,6 +14,8 @@
 	#include <WProgram.h>
 #endif
 
+#include "motor_control.h"
+
 #define YELLOW_LED 7
 #define RED_LED 6
 #define	YELLOW_MIN 500
@@ -27,6 +29,7 @@ class Robot {
 public:
 	Robot() {
 		loop_count = 0;
+		MotorController motor_control(1,2);
 	};
 	void print_coords();
 	void red_response();
