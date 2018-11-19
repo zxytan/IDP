@@ -50,8 +50,8 @@ private:
 	void open_gates(); //check servo positions in these functions
 	void close_gates();
 	void forward(float dist, bool direction); //includes use of PID library to stay on course
-	void go_to_wall(float prox_reading);
-};
+	void go_to_wall();
+}
 
 #endif
 

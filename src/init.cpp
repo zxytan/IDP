@@ -6,10 +6,6 @@ void Robot::leave_box() {
 }
 
 //set up LEDs
-//these functions are from arduino???
 
-const int yellow_LED = 7;
-const int red_LED = 6;
-
-pinMode(yellow_LED, OUTPUT);
-pinMode(red_LED, OUTPUT);
+pinMode(YELLOW_LED, OUTPUT);
+pinMode(RED_LED, OUTPUT);
