@@ -41,13 +41,13 @@ void Robot::print_coords() {
 	get_compass_reading(c_reading);
 	if (c_reading == x_0_wall)
 	{
-		x_coord = length_of_arena - back_prox - robot_length
-		y_coord = left_prox + sensor_dist
+		x_coord = length_of_arena - back_prox - robot_length;
+		y_coord = left_prox + sensor_dist;
 	}
 	else
 	{
-		x_coord = back_prox + robot_length
-		y_coord = length_of_arena - left_prox + robot_length - sensor_dist
+		x_coord = back_prox + robot_length;
+		y_coord = length_of_arena - left_prox + robot_length - sensor_dist;
 	}
 
 	Serial.println("Dangerous Mine: ( " + x_coord + ", " + y_coord + " )" );

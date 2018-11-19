@@ -52,7 +52,7 @@ private:
 	float x_0_wall = 335;
 	float bearing;
 	float back_prox;
-	float right_prox;
+	float left_prox;
 	float light;
 	float length_of_arena = 1;
 	float robot_length = 1; //measure this value
