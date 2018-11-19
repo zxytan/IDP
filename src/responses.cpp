@@ -5,7 +5,7 @@ void Robot::yellow_response() {
 	delay(3000); //stationary wait for 3 seconds
 
 	//flash yellow LED for 2 seconds 
-	for (int i=0; i<= 4; ++i)
+	for (int i=0; i<= 4; ++i) {
 		digitalWrite(YELLOW_LED, HIGH);
 		delay(250);
 		digitalWrite(YELLOW_LED, LOW);
@@ -42,9 +42,9 @@ void Robot::red_response() {
 
 	print_coords();
 	close_gates();
-	float bearing;
-	get_compass_reading(bearing);
-	turn(y_0_wall, bearing);
+	float initial_bearing;
+	get_compass_reading(initial_bearing);
+	turn(y_0_wall, initial_bearing);
 	start_motor(1);
 	for (int i = 0; i <= 15; ++i) {
 		float light;
@@ -53,8 +53,38 @@ void Robot::red_response() {
 			yellow_response();
 			forward(10, 1);
 			i += 10;
+			close_gates();
 		}
 		delay(1000);
 	}
 	stop_motor();
+	turn(initial_bearing, y_0_wall);
+	start_motor(1);
+	for (int i = 0; i <= 15; ++i) {
+		float light;
+		get_light_reading(light);
+		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
+			yellow_response();
+			forward(10, 1);
+			i += 10;
+			close_gates();
+		}
+		delay(1000);
+	}
+	stop_motor();
+	turn(y_max_wall, initial_bearing);
+	start_motor(1);
+	for (int i = 0; i <= 15; ++i) {
+		float light;
+		get_light_reading(light);
+		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
+			yellow_response();
+			forward(10, 1);
+			i += 10;
+			close_gates();
+		}
+		delay(1000);
+	}
+	stop_motor();
+	turn(initial_bearing, y_max_wall);
 }
