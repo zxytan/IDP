@@ -22,9 +22,11 @@ void Robot::wall_response() {
 	get_compass_reading(reading);
 	turn(y_0_wall, reading);
 	open_gates();
-	forward(28, 0);
+	motor_control.reverse(SPEED);
+	delay(1000);
 	close_gates();
-	forward(8, 1);
+	motor_control.forward(SPEED);
+	delay(1000);
 	get_compass_reading(reading);
 	turn(x_max_wall, reading);
 }
@@ -44,43 +46,10 @@ void Robot::red_response() {
 	close_gates();
 	get_compass_reading(bearing);
 	turn(y_0_wall, bearing);
-	start_motor(1);
-	for (int i = 0; i <= 15; ++i) {
-		get_light_reading(light);
-		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
-			yellow_response();
-			forward(10, 1);
-			i += 10;
-			close_gates();
-		}
-		delay(1000);
-	}
-	stop_motor();
+	yellow_in_red();
 	turn(bearing, y_0_wall);
-	start_motor(1);
-	for (int i = 0; i <= 15; ++i) {
-		get_light_reading(light);
-		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
-			yellow_response();
-			forward(10, 1);
-			i += 10;
-			close_gates();
-		}
-		delay(1000);
-	}
-	stop_motor();
+	yellow_in_red();
 	turn(y_max_wall, bearing);
-	start_motor(1);
-	for (int i = 0; i <= 15; ++i) {
-		get_light_reading(light);
-		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
-			yellow_response();
-			forward(10, 1);
-			i += 10;
-			close_gates();
-		}
-		delay(1000);
-	}
-	stop_motor();
+	yellow_in_red();
 	turn(bearing, y_max_wall);
 }

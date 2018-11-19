@@ -1,8 +1,9 @@
 #include "Robot.h"
 
 void Robot::leave_box() {
-	int dist = 5; //check distance to get out of box
-	forward(dist, 1);
+	motor_control.forward(SPEED);
+	delay(5000); //check
+	motor_control.stop();
 }
 
 //set up LEDs
