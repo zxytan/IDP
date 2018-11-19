@@ -2,7 +2,6 @@
 
 void Robot::go_home() {
 	float c_reading;
-	float p_reading;
 	get_compass_reading(c_reading);
 	if (c_reading == x_max_wall)
 	{
