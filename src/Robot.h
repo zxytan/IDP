@@ -22,7 +22,7 @@
 #define YELLOW_MAX 600
 #define RED_MIN 700
 #define RED_MAX 800
-#define SPEED 5 //cm/s (check)
+#define SPEED 100 //(check)
 #define BACK_PROX 0
 #define RIGHT_PROX 1
 
@@ -38,8 +38,6 @@ public:
 	void yellow_response();
 	void wall_response();
 	void go_home();
-	void start_motor(bool direction);
-	void stop_motor();
 	void turn(float target, float initial);
 	void leave_box();
 	void init();
@@ -60,8 +58,9 @@ private:
 	float robot_length = 1; //measure this value
 	void open_gates(); //check servo positions in these functions
 	void close_gates();
-	void forward(float dist, bool direction); //includes use of PID library to stay on course
 	void go_to_wall();
+	void yellow_in_red();
+	MotorController motor_control;
 };
 
 #endif
