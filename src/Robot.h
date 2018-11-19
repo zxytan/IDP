@@ -24,7 +24,7 @@
 #define RED_MAX 800
 #define SPEED 100 //(check)
 #define BACK_PROX 0
-#define RIGHT_PROX 1
+#define LEFT_PROX 1
 
 
 class Robot {
@@ -41,19 +41,19 @@ public:
 	void turn(float target, float initial);
 	void leave_box();
 	void init();
-	void get_light_reading(float& reading);
-	void get_prox_reading(bool direction, float& reading);
-	void get_compass_reading(float& reading);
+	void get_light_reading(); //updates light array
+	void get_prox_reading(bool direction); //updates back_prox or left_prox
+	void get_compass_reading(); //updates bearing
 private:
 	int loop_count;
 	float y_max_wall = 65;
-	float y_0_wall = 245;
-	float x_max_wall = 155;
+	float y_0_wall = 14;
+	float x_max_wall = 325;
 	float x_0_wall = 335;
 	float bearing;
 	float back_prox;
 	float left_prox;
-	float light;
+	float light[7];
 	float length_of_arena = 1;
 	float robot_length = 1; //measure this value
 	void open_gates(); //check servo positions in these functions
