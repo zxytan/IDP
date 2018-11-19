@@ -23,6 +23,8 @@
 #define RED_MIN 700
 #define RED_MAX 800
 #define SPEED 5 //cm/s (check)
+#define BACK_PROX 0
+#define RIGHT_PROX 1
 
 
 class Robot {
@@ -42,7 +44,7 @@ public:
 	void leave_box();
 	void init();
 	void get_light_reading(float& reading);
-	void get_prox_reading(float& reading);
+	void get_prox_reading(bool direction, float& reading);
 	void get_compass_reading(float& reading);
 private:
 	int loop_count;
@@ -54,6 +56,7 @@ private:
 	float back_prox;
 	float right_prox;
 	float light;
+	float length_of_arena = 1;
 	void open_gates(); //check servo positions in these functions
 	void close_gates();
 	void forward(float dist, bool direction); //includes use of PID library to stay on course
