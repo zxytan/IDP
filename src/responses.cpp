@@ -42,12 +42,10 @@ void Robot::red_response() {
 
 	print_coords();
 	close_gates();
-	float initial_bearing;
-	get_compass_reading(initial_bearing);
-	turn(y_0_wall, initial_bearing);
+	get_compass_reading(bearing);
+	turn(y_0_wall, bearing);
 	start_motor(1);
 	for (int i = 0; i <= 15; ++i) {
-		float light;
 		get_light_reading(light);
 		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
 			yellow_response();
@@ -58,10 +56,9 @@ void Robot::red_response() {
 		delay(1000);
 	}
 	stop_motor();
-	turn(initial_bearing, y_0_wall);
+	turn(bearing, y_0_wall);
 	start_motor(1);
 	for (int i = 0; i <= 15; ++i) {
-		float light;
 		get_light_reading(light);
 		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
 			yellow_response();
@@ -72,10 +69,9 @@ void Robot::red_response() {
 		delay(1000);
 	}
 	stop_motor();
-	turn(y_max_wall, initial_bearing);
+	turn(y_max_wall, bearing);
 	start_motor(1);
 	for (int i = 0; i <= 15; ++i) {
-		float light;
 		get_light_reading(light);
 		if (light >= YELLOW_MIN && light <= YELLOW_MAX) {
 			yellow_response();
@@ -86,5 +82,5 @@ void Robot::red_response() {
 		delay(1000);
 	}
 	stop_motor();
-	turn(initial_bearing, y_max_wall);
+	turn(bearing, y_max_wall);
 }

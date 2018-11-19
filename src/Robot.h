@@ -47,11 +47,14 @@ private:
 	float y_0_wall = 245;
 	float x_max_wall = 155;
 	float x_0_wall = 335;
+	float bearing;
+	float back_prox;
+	float right_prox;
+	float light;
 	void open_gates(); //check servo positions in these functions
 	void close_gates();
 	void forward(float dist, bool direction); //includes use of PID library to stay on course
 	void go_to_wall();
-}
+};
 
 #endif
-
