@@ -24,7 +24,7 @@
 #define RED_MAX 800
 #define SPEED 100 //(check)
 #define BACK_PROX 0
-#define RIGHT_PROX 1
+#define LEFT_PROX 1
 
 
 class Robot {
@@ -47,12 +47,12 @@ public:
 private:
 	int loop_count;
 	float y_max_wall = 65;
-	float y_0_wall = 245;
-	float x_max_wall = 155;
+	float y_0_wall = 14;
+	float x_max_wall = 325;
 	float x_0_wall = 335;
 	float bearing;
 	float back_prox;
-	float right_prox;
+	float left_prox;
 	float light;
 	float length_of_arena = 1;
 	void open_gates(); //check servo positions in these functions

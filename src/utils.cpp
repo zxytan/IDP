@@ -27,3 +27,7 @@ void Robot::go_to_wall() {
 	motor_control.stop();
 
 }
+
+void Robot::turn(float target, float initial) {
+
+}
