@@ -1,5 +1,7 @@
 #include "Robot.h"
 
+Serial.begin(9600);
+
 void Robot::leave_box() {
 	motor_control.forward(SPEED);
 	delay(5000); //check

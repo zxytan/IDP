@@ -55,6 +55,7 @@ private:
 	float left_prox;
 	float light;
 	float length_of_arena = 1;
+	float robot_length = 1; //measure this value
 	void open_gates(); //check servo positions in these functions
 	void close_gates();
 	void go_to_wall();
