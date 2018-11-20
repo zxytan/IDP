@@ -11,8 +11,17 @@ void setup(){
 void loop(){
   delay(2500);
   motor_controller.rotate_right(250);
-  delay(2500);
-  motor_controller.forward(250);
+  delay(300);
+  motor_controller.stop();
+  delay(300);
+  motor_controller.rotate_right(250);
+  delay(400);
+  motor_controller.stop();
+  delay(300);
+  motor_controller.rotate_right(250);
+  delay(500);
+  motor_controller.stop();
+  delay(300);
 }
 
 /*
