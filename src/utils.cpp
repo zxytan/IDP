@@ -50,11 +50,11 @@ void Robot::turn(float target, float initial) {
 
 void Robot::print_coords() {
 
-	// sensor_number =  //which sensor picked up the mine? --- 0 at left edge
-	// sensor_dist = // dist between sensors * sensor number ---- distance from ultrasound sensor
-	
+	// sensor_number =  ; //which sensor picked up the mine? --- 0 at left edge
+	sensor_dist = 0.1; //if in metres??? // dist between sensors * sensor number ---- distance from ultrasound sensor
 	int y_coord;
 	int x_coord;
+	float c_reading;
 	get_compass_reading();
 	get_prox_reading(BACK_PROX);
 	get_prox_reading(LEFT_PROX);
@@ -63,8 +63,7 @@ void Robot::print_coords() {
 		x_coord = length_of_arena - back_prox - robot_length;
 		y_coord = left_prox + sensor_dist;
 	}
-	else
-	{
+	else{
 		x_coord = back_prox + robot_length;
 		y_coord = length_of_arena - left_prox + robot_length - sensor_dist;
 	}
