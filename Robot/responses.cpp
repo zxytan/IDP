@@ -17,18 +17,17 @@ void Robot::yellow_response() {
 }
 
 void Robot::wall_response() {
-	loop_count += 1;
-	float reading;
-	get_compass_reading(reading);
-	turn(y_0_wall, reading);
+  if (loop_count % 2 == 0) {turn(RIGHT);}
+  else {turn(LEFT);}
 	open_gates();
 	motor_control.reverse(SPEED);
 	delay(1000);
 	close_gates();
 	motor_control.forward(SPEED);
 	delay(1000);
-	get_compass_reading(reading);
-	turn(x_max_wall, reading);
+	if (loop_count % 2 == 0) {turn(RIGHT);}
+  else {turn(LEFT);}
+  loop_count += 1;
 }
 
 void Robot::red_response() {

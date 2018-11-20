@@ -1,6 +1,6 @@
 #include "Robot.h"
 
-void Robot::yellow_in_red() {
+void Robot::yellow_in_red(void) {
 	motor_control.forward(SPEED);
 	for (int i = 0; i <= 15; ++i) {
 		get_light_reading();
@@ -30,22 +30,18 @@ void Robot::go_to_wall() {
 
 }
 
-void Robot::turn(float target, float initial) {
-	if (target > initial) {
+void Robot::turn(bool direction) {
+	if (!direction) {
+    //check variables!!!
 		motor_control.rotate_right(50);
-		while ((target - bearing)>2) {
-			get_compass_reading();
-			delay(200);
-		}
-		motor_control.stop();
+	  delay(200);
+		
 	}
-	else if (target < initial) {
+	else {
 		motor_control.rotate_left(50);
-		while ((bearing - target) > 2) {
-			get_compass_reading();
-			delay(200);
-		}
+    delay(200);
 	}
+	motor_control.stop();
 }
 
 void Robot::print_coords() {
