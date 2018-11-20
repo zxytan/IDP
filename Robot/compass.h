@@ -10,12 +10,13 @@ class Compass{
 
 public:
 
-  Compass() {Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);};
+  Compass() {};
   void init();
   float get_heading();
 
 private:
   void displaySensorDetails();
+  Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 };
 
 #endif

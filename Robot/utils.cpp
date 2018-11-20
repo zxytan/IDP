@@ -19,7 +19,7 @@ void Robot::yellow_in_red(void) {
 	motor_control.stop();
 }
 
-void Robot::go_to_wall() {
+void Robot::go_to_wall(void) {
 	motor_control.forward(SPEED);
 	get_prox_reading(BACK_PROX);
 	while (back_prox < length_of_arena) { //numerical number for dist from back of robot to edge
@@ -31,7 +31,7 @@ void Robot::go_to_wall() {
 }
 
 void Robot::turn(bool direction) {
-	if (!direction) {
+	if (direction == RIGHT) {
     //check variables!!!
 		motor_control.rotate_right(50);
 	  delay(200);
@@ -44,14 +44,13 @@ void Robot::turn(bool direction) {
 	motor_control.stop();
 }
 
-void Robot::print_coords() {
+void Robot::print_coords(void) {
 
 	// sensor_number =  ; //which sensor picked up the mine? --- 0 at left edge
-	sensor_dist = 0.1; //if in metres??? // dist between sensors * sensor number ---- distance from ultrasound sensor
+	sensor_dist = 10; //if in cm? dist between sensors * sensor number ---- distance from ultrasound sensor
 	int y_coord;
 	int x_coord;
-	float c_reading;
-	get_compass_reading();
+	float bearing = compass.get_heading()
 	get_prox_reading(BACK_PROX);
 	get_prox_reading(LEFT_PROX);
 	if (bearing == x_0_wall)
@@ -67,4 +66,36 @@ void Robot::print_coords() {
 	Serial.println("Dangerous Mine: ( " + x_coord + ", " + y_coord + " )" );
 }
 
-void 
+void Robot::get_prox_reading(bool direction) {
+  long duration;
+  if (direction == BACK) {
+  	digitalWrite(TRIG_PIN, LOW);
+  	delayMicroseconds(2);
+  	digitalWrite(TRIG_PIN, HIGH);
+  	delayMicroseconds(10);
+  	digitalWrite(TRIG_PIN, LOW);
+  
+  	duration = pulseIn(ECHO_PIN, HIGH);
+  }
+  else {
+	digitalWrite(TRIG_PIN_2, LOW);
+  	delayMicroseconds(2);
+  	digitalWrite(TRIG_PIN_2, HIGH);
+  	delayMicroseconds(10);
+  	digitalWrite(TRIG_PIN_2, LOW);
+  
+  	duration = pulseIn(ECHO_PIN_2, HIGH);
+  }
+  long distance = (duration/2) / 29.1;
+
+  if (distance >= 400 || distance <= 0) {
+    Serial.println("Out of range");
+    Serial.println(distance);
+	distance = get_prox_reading(direction);
+  }
+  else {
+    Serial.print(distance);
+    Serial.println(" cm");
+  }
+  return (distance);
+}

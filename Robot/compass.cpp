@@ -1,5 +1,4 @@
 
-
 #include "compass.h" 
 
 void Compass::displaySensorDetails(void) {
@@ -17,7 +16,7 @@ void Compass::displaySensorDetails(void) {
   delay(500);
 }
 
-void init(void) {
+void Compass::init(void) {
   Serial.begin(9600);
   Serial.println("HMC5883 Magnetometer Test"); Serial.println("");
   
@@ -34,7 +33,7 @@ void init(void) {
 }
 
 
-float get_heading(void) {
+float Compass::get_heading(void) {
   /* Get a new sensor event */ 
   sensors_event_t event; 
   mag.getEvent(&event);

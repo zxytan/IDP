@@ -16,7 +16,6 @@ void Robot::go_home() {
 			turn(LEFT);
 		}
 		go_to_wall();
-		c_reading = compass.get_heading();
 		turn(LEFT);
 		go_to_wall();
 	}

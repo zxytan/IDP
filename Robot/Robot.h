@@ -27,7 +27,7 @@
 #define YELLOW_MAX 600
 #define RED_MIN 700
 #define RED_MAX 800
-#define SPEED 100 //(check)
+#define SPEED 250 
 #define BACK_PROX 0
 #define LEFT_PROX 1
 #define RIGHT 0
@@ -38,15 +38,19 @@ class Robot {
 public:
 	Robot() {
 		loop_count = 0;
+    Motorcontroller motor_control(1,2);
+		Compass compass();
 	};
   
-  void init(void);
-	void print_coords(void);
-	void red_response(void);
-	void yellow_response(void);
-	void wall_response(void);
-	void go_home(void);
-	void leave_box(void);
+  void init();
+  void leave_box();
+  void main();
+  
+	void print_coords();
+	void red_response();
+	void yellow_response();
+	void wall_response();
+	void go_home();
 	
   
 	void get_prox_reading(bool direction); //updates back_prox or left_prox
@@ -61,15 +65,16 @@ private:
 	float back_prox;
 	float left_prox;
 	float light[7];
-	float length_of_arena = 1; //measure this value
-	float robot_length = 1; //measure this value
-  void get_compass_reading(void); //use to get approx bearing?
-	void open_gates(void); //check servo positions in these functions
-	void close_gates(void);
+	float length_of_arena = 200; //measure this value
+	float robot_length = 20; //measure this value
+
+	void open_gates(); //check servo positions in these functions
+	void close_gates();
   void turn(bool direction);
-	void go_to_wall(void);
-	void yellow_in_red(void);
-	MotorController motor_control(1,2);
+	void go_to_wall();
+	void yellow_in_red();
+
+	MotorController motor_control;
   Compass compass;
 };
 
