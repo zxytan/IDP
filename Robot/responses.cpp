@@ -28,6 +28,7 @@ void Robot::wall_response(void) {
 	if (loop_count % 2 == 0) {turn(RIGHT);}
   else {turn(LEFT);}
   loop_count += 1;
+  motor_control.stop();
 }
 
 void Robot::red_response(void) {

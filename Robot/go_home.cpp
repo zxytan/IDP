@@ -1,6 +1,6 @@
 #include "Robot.h"
 
-void Robot::go_home() {
+void Robot::go_home(void) {
 	float c_reading = compass.get_heading();
 	if (c_reading == x_max_wall)
 	{
