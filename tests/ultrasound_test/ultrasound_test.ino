@@ -24,14 +24,14 @@ void loop() {
   distance = (duration/2) / 29.1;
 
   if (distance >= 400 || distance <= 0){
-    Serial.println("A: Out of range");
+    Serial.println("Back: Out of range");
     Serial.println(distance);
   }else {
-    Serial.print("A: ");
+    Serial.print("Back: ");
     Serial.print(distance);
     Serial.println(" cm");
   }
-  /*
+  
   digitalWrite(TRIG_PIN_2, LOW);
   delayMicroseconds(2);
   digitalWrite(TRIG_PIN_2, HIGH);
@@ -42,12 +42,12 @@ void loop() {
   distance2 = (duration2/2) / 29.1;
 
   if (distance2 >= 400 || distance2 <= 0){
-    //Serial.println("B: Out of range");
+    Serial.println("Side: Out of range");
   }else {
-    //Serial.print("B :");
-    //Serial.print(distance);
-    //Serial.println(" cm");
+    Serial.print("Side :");
+    Serial.print(distance2);
+    Serial.println(" cm");
   }
-  */
+  
   delay(500);
 }
