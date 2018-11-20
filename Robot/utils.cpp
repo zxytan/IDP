@@ -1,3 +1,5 @@
+#include <Wire.h>
+#include <Adafruit_APDS9960.h>
 #include "Robot.h"
 
 void Robot::yellow_in_red(void) {
@@ -47,10 +49,10 @@ void Robot::turn(bool direction) {
 void Robot::print_coords(void) {
 
 	// sensor_number =  ; //which sensor picked up the mine? --- 0 at left edge
-	sensor_dist = 10; //if in cm? dist between sensors * sensor number ---- distance from ultrasound sensor
+	float sensor_dist = 10; //if in cm? dist between sensors * sensor number ---- distance from ultrasound sensor
 	int y_coord;
 	int x_coord;
-	float bearing = compass.get_heading()
+	float bearing = comp.get_heading();
 	get_prox_reading(BACK_PROX);
 	get_prox_reading(LEFT_PROX);
 	if (bearing == x_0_wall)
@@ -60,7 +62,7 @@ void Robot::print_coords(void) {
 	}
 	else{
 		x_coord = back_prox + robot_length;
-		y_coord = length_of_arena - left_prox + robot_length - sensor_dist;
+		y_coord = length_of_arena - left_prox + robot_width - sensor_dist;
 	}
 
 	Serial.println("Dangerous Mine: ( " + x_coord + ", " + y_coord + " )" );
@@ -68,7 +70,7 @@ void Robot::print_coords(void) {
 
 void Robot::get_prox_reading(bool direction) {
   long duration;
-  if (direction == BACK) {
+  if (direction == BACK_PROX) {
   	digitalWrite(TRIG_PIN, LOW);
   	delayMicroseconds(2);
   	digitalWrite(TRIG_PIN, HIGH);
@@ -91,11 +93,31 @@ void Robot::get_prox_reading(bool direction) {
   if (distance >= 400 || distance <= 0) {
     Serial.println("Out of range");
     Serial.println(distance);
-	distance = get_prox_reading(direction);
+	get_prox_reading(direction);
+	return;
   }
   else {
     Serial.print(distance);
     Serial.println(" cm");
   }
-  return (distance);
+  if (direction == BACK_PROX) {
+    back_prox = distance;
+  }
+  else {
+    left_prox = distance;
+  }
+}
+
+void Robot::open_gates() {
+
+  servo_1.write(90);
+  servo_2.write(90);
+  delay(50);
+}
+
+void Robot::close_gates() {
+
+  servo_1.write(0);
+  servo_2.write(0);
+  delay(50);
 }

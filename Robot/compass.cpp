@@ -1,6 +1,8 @@
 
 #include "compass.h" 
 
+Compass::Compass() {}
+
 void Compass::displaySensorDetails(void) {
   sensor_t sensor;
   mag.getSensor(&sensor);

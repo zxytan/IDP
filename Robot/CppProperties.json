@@ -1,0 +1,50 @@
+{
+  "configurations": [
+    {
+      "inheritEnvironments": [
+        "msvc_x64"
+      ],
+      "name": "x64-Release",
+      "includePath": [
+        "${workspaceRoot}\\..\\..\\..\\..\\..\\Arduino\\libraries\\Adafruit_HMC5883_Unified",
+        
+        "${workspaceRoot}\\..\\..\\..\\..\\..\\Arduino\\libraries",
+        "${env.INCLUDE}",
+        "${workspaceRoot}\\**"
+      ],
+      "defines": [
+        "WIN32",
+        "NDEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "intelliSenseMode": "windows-msvc-x64"
+    },
+    {
+      "name": "Visual Micro",
+      "intelliSenseMode": "msvc-x64",
+      "includePath": [
+        "${projectRoot}..\\Robot",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\libraries",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries",
+        "${projectRoot}..\\..\\..\\..\\..\\Arduino\\libraries",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\mega",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include\\avr",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\4.8.1\\include",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\4.9.2\\include",
+        "${projectRoot}..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\4.9.3\\include"
+      ],
+      "defines": [
+        "__AVR_ATmega2560__",
+        "F_CPU=16000000L",
+        "ARDUINO=10807",
+        "ARDUINO_AVR_MEGA2560",
+        "ARDUINO_ARCH_AVR",
+        "__cplusplus=201103L",
+        "_VMICRO_INTELLISENSE"
+      ]
+    }
+  ]
+}

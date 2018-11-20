@@ -10,7 +10,7 @@ class Compass{
 
 public:
 
-  Compass() {};
+  Compass();
   void init();
   float get_heading();
 
