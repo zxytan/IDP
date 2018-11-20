@@ -9,9 +9,9 @@ void Robot::yellow_in_red() {
 				yellow_response();
 				motor_control.forward(SPEED);
 				delay(10000);
-				motor_control.stop();
 				i += 10;
 				close_gates();
+				break;
 			}
 		}
 		delay(1000);
@@ -34,7 +34,7 @@ void Robot::turn(float target, float initial) {
 	if (target > initial) {
 		motor_control.rotate_right(50);
 		while ((target - bearing)>2) {
-			get_compass_reading(bearing);
+			get_compass_reading();
 			delay(200);
 		}
 		motor_control.stop();
@@ -42,7 +42,7 @@ void Robot::turn(float target, float initial) {
 	else if (target < initial) {
 		motor_control.rotate_left(50);
 		while ((bearing - target) > 2) {
-			get_compass_reading(bearing);
+			get_compass_reading();
 			delay(200);
 		}
 	}
