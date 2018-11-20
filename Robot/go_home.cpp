@@ -1,25 +1,22 @@
 #include "Robot.h"
 
 void Robot::go_home() {
-	float c_reading;
-	get_compass_reading(c_reading);
+	float c_reading = compass.get_heading();
 	if (c_reading == x_max_wall)
 	{
-		turn(y_0_wall, c_reading);
+		turn(RIGHT);
 		go_to_wall();
 	}
 	else 
 	{
 		if (loop_count < 8 )
 		{ 
-			turn(y_max_wall, c_reading);
+			turn(RIGHT);
 			go_to_wall();
-			get_compass_reading(c_reading);
-			turn(x_0_wall, c_reading);
+			turn(LEFT);
 		}
 		go_to_wall();
-		get_compass_reading(c_reading);
-		turn(y_0_wall, c_reading);
+		turn(LEFT);
 		go_to_wall();
 	}
 }

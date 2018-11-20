@@ -8,7 +8,18 @@ void Robot::leave_box() {
 	motor_control.stop();
 }
 
-//set up LEDs
+//set up pins
 
-pinMode(YELLOW_LED, OUTPUT);
-pinMode(RED_LED, OUTPUT);
+void Robot::init() {
+  Serial.begin (9600);
+  pinMode(YELLOW_LED, OUTPUT);
+  pinMode(RED_LED, OUTPUT);
+  
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+  pinMode(TRIG_PIN_2, OUTPUT);
+  pinMode(ECHO_PIN_2, INPUT);
+
+  motor_control.init();
+  
+}

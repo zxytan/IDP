@@ -12,7 +12,11 @@ void MotorController::init(){
   
 void MotorController::forward(uint8_t motor_speed){
   left_motor->setSpeed(motor_speed);
+<<<<<<< HEAD
   right_motor->setSpeed(motor_speed+correction);
+=======
+  right_motor->setSpeed(motor_speed);
+>>>>>>> 3002af08986dbafcff2bd57e40514a4a8963f0e1
   left_motor->run(BACKWARD);
   right_motor->run(BACKWARD);
 }
@@ -20,21 +24,33 @@ void MotorController::forward(uint8_t motor_speed){
 
 void MotorController::reverse(uint8_t motor_speed){
   left_motor->setSpeed(motor_speed);
+<<<<<<< HEAD
   right_motor->setSpeed(motor_speed + correction);
+=======
+  right_motor->setSpeed(motor_speed);
+>>>>>>> 3002af08986dbafcff2bd57e40514a4a8963f0e1
   left_motor->run(FORWARD);
   right_motor->run(FORWARD);
 }
 
 void MotorController::rotate_right(uint8_t motor_speed){
   left_motor->setSpeed(motor_speed);
+<<<<<<< HEAD
   right_motor->setSpeed(motor_speed + correction);
+=======
+  right_motor->setSpeed(motor_speed);
+>>>>>>> 3002af08986dbafcff2bd57e40514a4a8963f0e1
   left_motor->run(BACKWARD);
   right_motor->run(FORWARD);
 }
 
 void MotorController::rotate_left(uint8_t motor_speed){
   left_motor->setSpeed(motor_speed);
+<<<<<<< HEAD
   right_motor->setSpeed(motor_speed + correction);
+=======
+  right_motor->setSpeed(motor_speed);
+>>>>>>> 3002af08986dbafcff2bd57e40514a4a8963f0e1
   left_motor->run(FORWARD);
   right_motor->run(BACKWARD);
 }

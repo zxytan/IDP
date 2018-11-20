@@ -1,7 +1,7 @@
 #include "Robot.h"
 
 
-void Robot::yellow_response() {
+void Robot::yellow_response(void) {
 	delay(3000); //stationary wait for 3 seconds
 
 	//flash yellow LED for 2 seconds 
@@ -16,22 +16,21 @@ void Robot::yellow_response() {
 	
 }
 
-void Robot::wall_response() {
-	loop_count += 1;
-	float reading;
-	get_compass_reading(reading);
-	turn(y_0_wall, reading);
+void Robot::wall_response(void) {
+  if (loop_count % 2 == 0) {turn(RIGHT);}
+  else {turn(LEFT);}
 	open_gates();
 	motor_control.reverse(SPEED);
 	delay(1000);
 	close_gates();
 	motor_control.forward(SPEED);
 	delay(1000);
-	get_compass_reading(reading);
-	turn(x_max_wall, reading);
+	if (loop_count % 2 == 0) {turn(RIGHT);}
+  else {turn(LEFT);}
+  loop_count += 1;
 }
 
-void Robot::red_response() {
+void Robot::red_response(void) {
 	delay(3000); //stationary wait for 3 seconds
 
 	//flash red LED for 2 seconds 
@@ -44,12 +43,15 @@ void Robot::red_response() {
 
 	print_coords();
 	close_gates();
-	get_compass_reading(bearing);
-	turn(y_0_wall, bearing);
+	if (loop_count % 2 == 0) {turn(RIGHT);}
+  	else {turn(LEFT);}
 	yellow_in_red();
-	turn(bearing, y_0_wall);
+	if (loop_count % 2 == 0) {turn(LEFT);}
+  	else {turn(RIGHT);}
 	yellow_in_red();
-	turn(y_max_wall, bearing);
+	if (loop_count % 2 == 0) {turn(LEFT);}
+  	else {turn(RIGHT);}
 	yellow_in_red();
-	turn(bearing, y_max_wall);
+	if (loop_count % 2 == 0) {turn(RIGHT);}
+  	else {turn(LEFT);}
 }
