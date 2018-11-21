@@ -108,16 +108,17 @@ void Robot::get_prox_reading(bool direction) {
   }
 }
 
-void Robot::open_gates() {
+void Robot::open_gates() {  //gates open at the same time
 
-  servo_1.write(90);
-  servo_2.write(90);
-  delay(50);
+  servo_right.write(150);
+  servo_left.write(-30);
+  delay(500);
 }
 
-void Robot::close_gates() {
+void Robot::close_gates() { //one gate open before the other to stop mines jamming the servos
 
-  servo_1.write(0);
-  servo_2.write(0);
-  delay(50);
+  servo_right.write(30);
+  delay(200);
+  servo_left.write(115);
+  delay(500);
 }

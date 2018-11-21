@@ -35,8 +35,8 @@ class Robot {
   		loop_count = 0;
       MotorController motor_control(1,2);
   		Compass compass;
-      servo_1.attach(9);
-      servo_2.attach(10);
+      servo_right.attach(9);
+      servo_left.attach(10);
   	};
     
     void init();
@@ -65,7 +65,7 @@ class Robot {
   	float length_of_arena = 230;
   	float robot_length = 28;
     float robot_width = 20;
-  	void open_gates(); //check servo positions in these functions
+  	void open_gates();
   	void close_gates();
     void turn(bool direction);
   	void go_to_wall();
@@ -73,8 +73,8 @@ class Robot {
   
   	MotorController motor_control;
     Compass compass;
-    Servo servo_1;
-    Servo servo_2;
+    Servo servo_right;
+    Servo servo_left;
 };
 
 #endif
