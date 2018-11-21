@@ -35,8 +35,8 @@ class Robot {
   		loop_count = 0;
       MotorController motor_control(1,2);
   		Compass compass;
-      servo_1.attach(9);
-      servo_2.attach(10);
+      servo_right.attach(9);
+      servo_left.attach(10);
   	};
     
     void init();
@@ -73,8 +73,8 @@ class Robot {
   
   	MotorController motor_control;
     Compass compass;
-    Servo servo_1;
-    Servo servo_2;
+    Servo servo_right;
+    Servo servo_left;
 };
 
 #endif

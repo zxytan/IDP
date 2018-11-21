@@ -110,14 +110,14 @@ void Robot::get_prox_reading(bool direction) {
 
 void Robot::open_gates() {
 
-  servo_1.write(90);
-  servo_2.write(90);
+  servo_right.write(150);
+  servo_left.write(-35);
   delay(50);
 }
 
 void Robot::close_gates() {
 
-  servo_1.write(0);
-  servo_2.write(0);
+  servo_right.write(30);
+  servo_left.write(125);
   delay(50);
 }

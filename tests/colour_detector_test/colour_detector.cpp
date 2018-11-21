@@ -10,7 +10,7 @@
 #define ESTIMATE_YELLOW 3
 
 float sensor_change_time = 0.5;
-int colour_readings[4] = {800,300,500,400};
+int colour_readings[4] = {503,209,358,187};
 //If necessary, use different colour readings for each pin
 /*
 int colour_readings[NUM_SENSORS][4] = {{800,300,500,400},

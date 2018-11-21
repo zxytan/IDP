@@ -28,8 +28,8 @@
 
 #include <inttypes.h>
 
-#define START_PIN 8
-#define NUM_SENSORS 7
+#define START_PIN 9
+#define NUM_SENSORS 1
 
 //Yellow has highest priority, with decreasing priority down to black
 #define STATUS_YELLOW 3

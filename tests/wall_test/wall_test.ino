@@ -4,7 +4,7 @@
 #define LEFT_PROX true
 #define RIGHT false
 #define LEFT true
-#define length_of_arena 170
+#define length_of_arena 200
 #define TRIG_PIN 3
 #define ECHO_PIN 2
 #define TRIG_PIN_2 4
@@ -53,25 +53,36 @@ float get_prox_reading(bool direction) {
 
 void holla(void) {
   float back_prox = get_prox_reading(BACK_PROX);
-  if (back_prox >= (length_of_arena - 5)) {
-    motor_control.stop();
+  if (back_prox >= (length_of_arena - 10 )) {
     wall_response();
   }
   motor_control.forward(SPEED);
-  delay(100);
+  delay(500);
 }
 
 void wall_response(void) {
-  if (loop_count % 2 == 0) {turn(RIGHT);}
-  else {turn(LEFT);}
+  if (loop_count % 2 == 0) {
+    turn(RIGHT);
+    motor_control.stop();
+  }
+  else {
+    turn(LEFT);
+    motor_control.stop();
+   }
   //open_gates();
   motor_control.reverse(SPEED);
-  delay(1000);
+  delay(1500);
   //close_gates();
   motor_control.forward(SPEED);
-  delay(1000);
-  if (loop_count % 2 == 0) {turn(RIGHT);}
-  else {turn(LEFT);}
+  delay(500);
+  if (loop_count % 2 == 0) {
+    turn(RIGHT);
+    motor_control.stop();
+  }
+  else {
+    turn(LEFT);
+    motor_control.stop();
+  }
   loop_count += 1;
   motor_control.stop();
 }
@@ -80,12 +91,12 @@ void turn(bool direction) {
   if (direction == RIGHT) {
     //check variables!!!
     motor_control.rotate_right(SPEED);
-    delay(1000);
+    delay(1103);
     
   }
   else {
     motor_control.rotate_left(SPEED);
-    delay(1100);
+    delay(1213);
   }
   motor_control.stop();
 }
@@ -101,18 +112,13 @@ void setup() {
   pinMode(ECHO_PIN_2, INPUT);
 
   motor_control.init();
+  motor_control.forward(SPEED);
+  delay(1000);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  turn(RIGHT);
-  motor_control.forward(SPEED);
-  delay(1000);
-  motor_control.stop();
-  turn(LEFT);
-  motor_control.forward(SPEED);
-  delay(1000);
-  motor_control.stop();
   
+  holla();
 
 }
