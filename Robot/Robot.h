@@ -65,7 +65,7 @@ class Robot {
   	float length_of_arena = 230;
   	float robot_length = 28;
     float robot_width = 20;
-  	void open_gates(); //check servo positions in these functions
+  	void open_gates();
   	void close_gates();
     void turn(bool direction);
   	void go_to_wall();
