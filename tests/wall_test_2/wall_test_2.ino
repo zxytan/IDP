@@ -56,29 +56,6 @@ float get_prox_reading(bool direction) {
   }
 }
 
-void forward(void) {
-  float back_prox = get_prox_reading(BACK_PROX);
-  if (back_prox >= (length_of_arena - 10 )) {
-    //wall_response();
-    reverse();
-    
-  }
-  motor_control.forward(SPEED);
-  delay(500);
-}
-
-void reverse(void) {
-  float back_prox = get_prox_reading(BACK_PROX);
-  if (back_prox <= ( 10 )) {
-    //wall_response();
-    forward();
-    
-  }
-  
-  motor_control.reverse(SPEED);
-  delay(500);
-  
-}
 
 void wall_response(void) {
   if (loop_count % 2 == 0) {
@@ -139,6 +116,14 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   
-  forward();
-
+  float back_prox = get_prox_reading(BACK_PROX);
+  if (back_prox >= (length_of_arena - 10 )) {
+    while (back_prox >= ( 10 )) {
+    motor_control.reverse(SPEED);
+    delay(500);
+    float back_prox = get_prox_reading(BACK_PROX);
+    }
+  }
+  motor_control.forward(SPEED);
+  delay(500);
 }
