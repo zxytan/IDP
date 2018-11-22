@@ -1,5 +1,5 @@
-#define TRIG_PIN 3
-#define ECHO_PIN 2
+#define TRIG_PIN 2
+#define ECHO_PIN 3
 #define TRIG_PIN_2 4
 #define ECHO_PIN_2 5
 

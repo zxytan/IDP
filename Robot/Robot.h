@@ -1,4 +1,3 @@
-
 #ifndef _Robot_h
 #define _Robot_h
 
@@ -14,8 +13,8 @@
 
 #define YELLOW_LED 7
 #define RED_LED 6
-#define TRIG_PIN 3
-#define ECHO_PIN 2
+#define TRIG_PIN 2
+#define ECHO_PIN 3
 #define TRIG_PIN_2 4
 #define ECHO_PIN_2 5
 #define	YELLOW_MIN 500
