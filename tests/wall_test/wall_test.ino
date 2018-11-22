@@ -1,18 +1,24 @@
 #include "motor_control.h"
+#include "compass.h"
 #define SPEED 250 
 #define BACK_PROX false
 #define LEFT_PROX true
 #define RIGHT false
 #define LEFT true
-#define length_of_arena 160
-#define TRIG_PIN 3
-#define ECHO_PIN 2
+#define length_of_arena 190
+#define TRIG_PIN 2
+#define ECHO_PIN 3
 #define TRIG_PIN_2 4
 #define ECHO_PIN_2 5
 
 int loop_count;
+float y_max_wall = 260;
+float y_0_wall = 80;
+float x_max_wall = 350;
+float x_0_wall = 170;
 
 MotorController motor_control(1,2);
+Compass compass;
 
 float get_prox_reading(bool direction) {
   long duration;
@@ -26,7 +32,7 @@ float get_prox_reading(bool direction) {
     duration = pulseIn(ECHO_PIN, HIGH);
   }
   else {
-  digitalWrite(TRIG_PIN_2, LOW);
+	  digitalWrite(TRIG_PIN_2, LOW);
     delayMicroseconds(2);
     digitalWrite(TRIG_PIN_2, HIGH);
     delayMicroseconds(10);
@@ -39,54 +45,58 @@ float get_prox_reading(bool direction) {
   if (distance >= 400 || distance <= 0) {
     Serial.println("Out of range");
     Serial.println(distance);
-  get_prox_reading(direction);
-  return;
+	  get_prox_reading(direction);
+	  return;
   }
   else {
     Serial.print(distance);
     Serial.println(" cm");
   }
   if (direction == BACK_PROX) {
-    //back_prox = distance;
-    return (distance);
+    back_prox = distance;
   }
   else {
-    //left_prox = distance;
-    return(distance);
+    left_prox = distance;
   }
 }
 
 void forward(void) {
   float back_prox = get_prox_reading(BACK_PROX);
   if (back_prox >= (length_of_arena - 10 )) {
-    //wall_response();
-    reverse();
+    wall_response();
     
   }
   motor_control.forward(SPEED);
   delay(500);
 }
 
-void reverse(void) {
-  float back_prox = get_prox_reading(BACK_PROX);
-  if (back_prox <= ( 10 )) {
-    //wall_response();
-    forward();
+void turn(float target, float initial) {
+  float bearing = initial;
+  if (target > initial) {
+    motor_control.rotate_right(250);
     
+    while ((target - bearing) > 4) {
+      bearing = compass.get_heading();
+    }
+    motor_control.stop();
   }
-  
-  motor_control.reverse(SPEED);
-  delay(500);
-  
+  else if (target < initial) {
+    motor_control.rotate_left(250);
+    while ((bearing - target) > 4) {
+      bearing = compass.get_heading();
+    }
+  }
 }
 
 void wall_response(void) {
   if (loop_count % 2 == 0) {
-    turn(RIGHT);
+    float c_bearing = compass.get_heading();
+    turn(y_0_wall, c_bearing);
     motor_control.stop();
   }
   else {
-    turn(LEFT);
+    float c_bearing = compass.get_heading();
+    turn(y_max_wall, c_bearing);
     motor_control.stop();
    }
   //open_gates();
@@ -96,30 +106,19 @@ void wall_response(void) {
   motor_control.forward(SPEED);
   delay(500);
   if (loop_count % 2 == 0) {
-    turn(RIGHT);
+    float c_bearing = compass.get_heading();
+    turn(x_0_wall, c_bearing);
     motor_control.stop();
   }
   else {
-    turn(LEFT);
+    float c_bearing = compass.get_heading();
+    turn(x_max_wall, c_bearing);
     motor_control.stop();
   }
   loop_count += 1;
   motor_control.stop();
 }
 
-void turn(bool direction) {
-  if (direction == RIGHT) {
-    //check variables!!!
-    motor_control.rotate_right(SPEED);
-    delay(1103);
-    
-  }
-  else {
-    motor_control.rotate_left(SPEED);
-    delay(1213);
-  }
-  motor_control.stop();
-}
 
 void setup() {
   // put your setup code here, to run once:
@@ -132,6 +131,8 @@ void setup() {
   pinMode(ECHO_PIN_2, INPUT);
 
   motor_control.init();
+  
+  compass.init();
   motor_control.forward(SPEED);
   delay(1000);
 }
