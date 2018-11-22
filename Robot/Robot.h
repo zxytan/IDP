@@ -54,10 +54,10 @@ class Robot {
   	
   private:
   	int loop_count;
-  	float y_max_wall = 65;
-  	float y_0_wall = 14;
-  	float x_max_wall = 325;
-  	float x_0_wall = 335;
+  	float y_max_wall = 263;
+  	float y_0_wall = 83;
+  	float x_max_wall = 353;
+  	float x_0_wall = 173;
    
   	float back_prox;
   	float left_prox;
