@@ -23,7 +23,7 @@ void Robot::wall_response(void) {
     motor_control.stop();
   }
   else {
-    turn(y_max_wall, c_bearing);
+    turn(y_0_wall, c_bearing);
     motor_control.stop();
    }
   open_gates();
@@ -59,7 +59,8 @@ void Robot::red_response(void) {
 	print_coords();
 	close_gates();
   float c_bearing = compass.get_heading();
-	if (loop_count % 2 == 0) {turn(y_0_wall, c_bearing);}
+	if (loop_count == 0) {turn(y_max_wall, c_bearing);}
+	  else if (loop_count % 2 == 0) {turn(y_0_wall, c_bearing);}
   	else {turn(y_0_wall, c_bearing);}
 	yellow_in_red();
   c_bearing = compass.get_heading();
@@ -67,7 +68,8 @@ void Robot::red_response(void) {
   	else {turn(x_0_wall,c_bearing);}
 	yellow_in_red();
   c_bearing = compass.get_heading();
-	if (loop_count % 2 == 0) {turn(y_max_wall, c_bearing);}
+	if (loop_count == 0) {turn(y_0_wall, c_bearing);}
+    else if (loop_count % 2 == 0) {turn(y_max_wall, c_bearing);}
   	else {turn(y_max_wall,c_bearing);}
 	yellow_in_red();
   c_bearing = compass.get_heading();
