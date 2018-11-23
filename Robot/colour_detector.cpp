@@ -1,6 +1,5 @@
 
 #include "colour_detector.h"
-#include <Arduino.h>
 
 //Defines
 

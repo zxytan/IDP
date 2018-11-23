@@ -14,8 +14,8 @@ void MotorController::forward(uint8_t motor_speed){
   left_motor->setSpeed(motor_speed);
   right_motor->setSpeed(motor_speed+correction);
 
-  left_motor->run(BACKWARD);
-  right_motor->run(BACKWARD);
+  left_motor->run(FORWARD);
+  right_motor->run(FORWARD);
 }
 
 
@@ -23,8 +23,8 @@ void MotorController::reverse(uint8_t motor_speed){
   left_motor->setSpeed(motor_speed);
   right_motor->setSpeed(motor_speed + correction);
 
-  left_motor->run(FORWARD);
-  right_motor->run(FORWARD);
+  left_motor->run(BACKWARD);
+  right_motor->run(BACKWARD);
 }
 
 void MotorController::rotate_right(uint8_t motor_speed){

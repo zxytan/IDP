@@ -24,6 +24,7 @@ public:
   void rotate_right(uint8_t motor_speed);
   void rotate_left(uint8_t motor_speed);
   void stop();
+  double correction;
 
 private:
 

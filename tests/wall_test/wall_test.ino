@@ -1,3 +1,4 @@
+//#include <PID_v1.h>
 #include "motor_control.h"
 #include "compass.h"
 #define SPEED 250 
@@ -19,7 +20,9 @@ float x_0_wall = 170;
 
 MotorController motor_control(1,2);
 Compass compass;
-
+//double bearing = compass.get_heading();
+//double Setpoint;
+//PID motor_PID(&bearing, &motor_control.correction, &Setpoint, 2, 5, 1, DIRECT);
 float get_prox_reading(bool direction) {
   long duration;
   if (direction == BACK_PROX) {
@@ -129,8 +132,13 @@ void setup() {
   motor_control.init();
   
   compass.init();
+  //double Setpoint = x_max_wall;
+  //motor_PID.SetOutputLimits(-5, +5);
+
+  //turn the PID on
+  //motor_PID.SetMode(AUTOMATIC);
   motor_control.forward(SPEED);
-  delay(1000);
+  delay(10000);
 }
 
 void loop() {

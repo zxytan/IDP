@@ -1,20 +1,19 @@
-#include <Wire.h>
-#include <Adafruit_APDS9960.h>
-#include "Robot.h"
+
+#include "robot.h"
 
 void Robot::yellow_in_red(void) {
 	motor_control.forward(SPEED);
 	for (int i = 0; i <= 15; ++i) {
-		get_light_reading();
-		for (int n = 0; n <= 6; ++n) {
-			if (light[n] >= YELLOW_MIN && light[n] <= YELLOW_MAX) {
+	  colour_detector.update_status();
+    uint8_t colour_status = colour_detector.get_status();
+    switch(colour_status){
+      case STATUS_YELLOW:
 				yellow_response();
 				motor_control.forward(SPEED);
 				delay(10000);
 				i += 10;
 				close_gates();
 				break;
-			}
 		}
 		delay(1000);
 	}
@@ -32,18 +31,22 @@ void Robot::go_to_wall(void) {
 
 }
 
-void Robot::turn(bool direction) {
-	if (direction == RIGHT) {
-    //check variables!!!
-		motor_control.rotate_right(50);
-	  delay(200);
-		
-	}
-	else {
-		motor_control.rotate_left(50);
-    delay(200);
-	}
-	motor_control.stop();
+void Robot::turn(float target, float initial) {
+  float bearing = initial;
+  if (target > initial) {
+    motor_control.rotate_right(250);
+    
+    while ((target - bearing) > 4) {
+      bearing = compass.get_heading();
+    }
+    motor_control.stop();
+  }
+  else if (target < initial) {
+    motor_control.rotate_left(250);
+    while ((bearing - target) > 4) {
+      bearing = compass.get_heading();
+    }
+  }
 }
 
 void Robot::print_coords(void) {
@@ -65,7 +68,7 @@ void Robot::print_coords(void) {
 		y_coord = length_of_arena - left_prox + robot_width - sensor_dist;
 	}
 
-	Serial.println("Dangerous Mine: ( " + x_coord + ", " + y_coord + " )" );
+	Serial.println("Dangerous Mine: ( " + String(x_coord) + ", " + String(y_coord) + " )" );
 }
 
 void Robot::get_prox_reading(bool direction) {

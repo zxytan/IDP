@@ -1,8 +1,8 @@
-#include "Robot.h"
+#include "robot.h"
 
-void Robot::main(void) {
+void Robot::main_loop(void) {
   get_prox_reading(BACK_PROX);
-  if (back_prox >= (length_of_arena - 5)) {
+  if (back_prox >= (length_of_arena - 10)) {
     motor_control.stop();
     wall_response();
   }

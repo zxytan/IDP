@@ -1,5 +1,12 @@
-#include "Robot.h"
+#include "robot.h"
+#include "motor_control.h"
 
+Robot::Robot():motor_control(left_motor_port, right_motor_port) {
+  loop_count = 0;
+  Compass compass;
+  servo_right.attach(9);
+  servo_left.attach(10);
+};
 void Robot::leave_box() {
 	motor_control.forward(SPEED);
 	delay(5000); //check
