@@ -51,8 +51,8 @@ void Robot::turn(float target, float initial) {
 
 void Robot::print_coords(void) {
 
-	// sensor_number =  ; //which sensor picked up the mine? --- 0 at left edge
-	float sensor_dist = 10; //if in cm? dist between sensors * sensor number ---- distance from ultrasound sensor
+  uint8_t sensor_number = colour_detector.get_red_index();  // assuming 0 at left edge
+	float sensor_dist = 4 * sensor_number; //if in cm? dist between sensors * sensor number ---- distance from ultrasound sensor
 	int y_coord;
 	int x_coord;
 	float bearing = compass.get_heading();
@@ -103,8 +103,8 @@ float Robot::get_prox_reading(bool direction) {
     Serial.print(distance);
     Serial.println(" cm");
   }
-/*
-  i dont think we need this part 
+/**********i dont think we need this part
+   
   if (direction == BACK_PROX) {
     back_prox = distance;
   }
