@@ -1,5 +1,6 @@
 
 #include "colour_detector.h"
+#include <Arduino.h>
 
 //Defines
 
@@ -9,17 +10,13 @@
 #define ESTIMATE_YELLOW 3
 
 float sensor_change_time = 0.5;
-int colour_readings[4] = {503,209,358,187};
-//If necessary, use different colour readings for each pin
-/*
-int colour_readings[NUM_SENSORS][4] = {{800,300,500,400},
-                                      {800,300,500,400},
-                                      {800,300,500,400},
-                                      {800,300,500,400},
-                                      {800,300,500,400},
-                                      {800,300,500,400},
-                                      {800,300,500,400}};
-*/
+int colour_readings[NUM_SENSORS][4] = {{600,380,470,310},
+                                      {600,380,470,310},
+                                      {600,380,470,310},
+                                      {600,380,470,310},
+                                      {600,380,470,310},
+                                      {600,380,470,310},
+                                      {600,380,470,310}};
 
 //SingleSensor class methods
 
@@ -49,9 +46,7 @@ uint8_t SingleSensor::get_closest_reading(int reading){
 	int dif = 0;
 	int min_dif_index = 0;
 	for(int i=0;i<4;i++){
-		dif = abs(colour_readings[i]-reading);
-		//If necessary, use different colour_readings for each sensor
-    //dif = abs(colour_readings[pin][i] - reading);
+		dif = abs(colour_readings[pin-START_PIN][i] - reading);
 		if(dif<min_dif){
 			min_dif = dif;
 			min_dif_index = i;
