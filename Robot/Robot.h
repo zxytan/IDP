@@ -23,8 +23,7 @@
 #define SPEED 250 
 #define BACK_PROX false
 #define LEFT_PROX true
-#define RIGHT false
-#define LEFT true
+
 
 
 class Robot {
@@ -42,7 +41,7 @@ class Robot {
   	void go_home();
   	
     
-  	void get_prox_reading(bool direction); //updates back_prox or left_prox
+  	float get_prox_reading(bool direction); //updates back_prox or left_prox
   	
   private:
   	int loop_count;
@@ -51,8 +50,8 @@ class Robot {
   	float x_max_wall = 350;
   	float x_0_wall = 170;
    
-  	float back_prox;
-  	float left_prox;
+//  	float back_prox;
+//  	float left_prox;
   	float length_of_arena = 200;
   	float robot_length = 28;
     float robot_width = 20;
@@ -63,8 +62,8 @@ class Robot {
   	void yellow_in_red();
 
    
-    uint8_t left_motor_port = 1;
-    uint8_t right_motor_port = 2;
+    uint8_t left_motor_port = 2;
+    uint8_t right_motor_port = 1;
   
   	MotorController motor_control;
     Compass compass;

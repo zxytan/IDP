@@ -22,7 +22,7 @@ void Robot::yellow_in_red(void) {
 
 void Robot::go_to_wall(void) {
 	motor_control.forward(SPEED);
-	get_prox_reading(BACK_PROX);
+	float back_prox = get_prox_reading(BACK_PROX);
 	while (back_prox < length_of_arena) { //numerical number for dist from back of robot to edge
 		get_prox_reading(BACK_PROX);
 		delay(500);
@@ -55,9 +55,9 @@ void Robot::print_coords(void) {
 	float sensor_dist = 10; //if in cm? dist between sensors * sensor number ---- distance from ultrasound sensor
 	int y_coord;
 	int x_coord;
-	float bearing = comp.get_heading();
-	get_prox_reading(BACK_PROX);
-	get_prox_reading(LEFT_PROX);
+	float bearing = compass.get_heading();
+	float back_prox = get_prox_reading(BACK_PROX);
+	float left_prox = get_prox_reading(LEFT_PROX);
 	if (bearing == x_0_wall)
 	{
 		x_coord = length_of_arena - back_prox - robot_length;
@@ -71,7 +71,7 @@ void Robot::print_coords(void) {
 	Serial.println("Dangerous Mine: ( " + String(x_coord) + ", " + String(y_coord) + " )" );
 }
 
-void Robot::get_prox_reading(bool direction) {
+float Robot::get_prox_reading(bool direction) {
   long duration;
   if (direction == BACK_PROX) {
   	digitalWrite(TRIG_PIN, LOW);
@@ -97,24 +97,26 @@ void Robot::get_prox_reading(bool direction) {
     Serial.println("Out of range");
     Serial.println(distance);
 	get_prox_reading(direction);
-	return;
+	return(distance);
   }
   else {
     Serial.print(distance);
     Serial.println(" cm");
   }
+/*
+  i dont think we need this part 
   if (direction == BACK_PROX) {
     back_prox = distance;
   }
   else {
     left_prox = distance;
   }
+ */ 
 }
 
 void Robot::open_gates() {  //gates open at the same time
 
   servo_right.write(150);
-
   servo_left.write(-30);
   delay(500);
 }
@@ -122,7 +124,6 @@ void Robot::open_gates() {  //gates open at the same time
 void Robot::close_gates() { //one gate open before the other to stop mines jamming the servos
 
   servo_right.write(30);
-
   delay(200);
   servo_left.write(115);
   delay(500);

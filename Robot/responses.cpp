@@ -1,4 +1,4 @@
-#include "Robot.h"
+#include "robot.h"
 
 
 void Robot::yellow_response(void) {
@@ -17,16 +17,30 @@ void Robot::yellow_response(void) {
 }
 
 void Robot::wall_response(void) {
-  if (loop_count % 2 == 0) {turn(RIGHT);}
-  else {turn(LEFT);}
-	open_gates();
-	motor_control.reverse(SPEED);
-	delay(1000);
-	close_gates();
-	motor_control.forward(SPEED);
-	delay(1000);
-	if (loop_count % 2 == 0) {turn(RIGHT);}
-  else {turn(LEFT);}
+  float c_bearing = compass.get_heading();
+  if (loop_count % 2 == 0) {
+    turn(y_0_wall, c_bearing);
+    motor_control.stop();
+  }
+  else {
+    turn(y_max_wall, c_bearing);
+    motor_control.stop();
+   }
+  open_gates();
+  motor_control.reverse(SPEED);
+  delay(1500);
+  close_gates();
+  motor_control.forward(SPEED);
+  delay(500);
+  c_bearing = compass.get_heading();
+  if (loop_count % 2 == 0) {
+    turn(x_0_wall, c_bearing);
+    motor_control.stop();
+  }
+  else {
+    turn(x_max_wall, c_bearing);
+    motor_control.stop();
+  }
   loop_count += 1;
   motor_control.stop();
 }
@@ -44,15 +58,19 @@ void Robot::red_response(void) {
 
 	print_coords();
 	close_gates();
-	if (loop_count % 2 == 0) {turn(RIGHT);}
-  	else {turn(LEFT);}
+  float c_bearing = compass.get_heading();
+	if (loop_count % 2 == 0) {turn(y_0_wall, c_bearing);}
+  	else {turn(y_0_wall, c_bearing);}
 	yellow_in_red();
-	if (loop_count % 2 == 0) {turn(LEFT);}
-  	else {turn(RIGHT);}
+  c_bearing = compass.get_heading();
+	if (loop_count % 2 == 0) {turn(x_max_wall, c_bearing);}
+  	else {turn(x_0_wall,c_bearing);}
 	yellow_in_red();
-	if (loop_count % 2 == 0) {turn(LEFT);}
-  	else {turn(RIGHT);}
+  c_bearing = compass.get_heading();
+	if (loop_count % 2 == 0) {turn(y_max_wall, c_bearing);}
+  	else {turn(y_max_wall,c_bearing);}
 	yellow_in_red();
-	if (loop_count % 2 == 0) {turn(RIGHT);}
-  	else {turn(LEFT);}
+  c_bearing = compass.get_heading();
+	if (loop_count % 2 == 0) {turn(x_max_wall, c_bearing);}
+  	else {turn(x_0_wall, c_bearing);}
 }
