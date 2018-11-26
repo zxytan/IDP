@@ -52,7 +52,7 @@ void Robot::turn(float target, float initial) {
 void Robot::print_coords(void) {
 
   uint8_t sensor_number = colour_detector.get_red_index();  // assuming 0 at left edge
-	float sensor_dist = 4 * sensor_number; //if in cm? dist between sensors * sensor number ---- distance from ultrasound sensor
+	float sensor_dist = 3.5 * sensor_number; //dist between sensors * sensor number ---- distance from ultrasound sensor
 	int y_coord;
 	int x_coord;
 	float bearing = compass.get_heading();
@@ -61,11 +61,11 @@ void Robot::print_coords(void) {
 	if (bearing == x_0_wall)
 	{
 		x_coord = length_of_arena - back_prox - robot_length;
-		y_coord = left_prox + sensor_dist;
+		y_coord = left_prox - 1.0 + sensor_dist;
 	}
 	else{
 		x_coord = back_prox + robot_length;
-		y_coord = length_of_arena - left_prox + robot_width - sensor_dist;
+		y_coord = length_of_arena - left_prox + 1.0 - sensor_dist;
 	}
 
 	Serial.println("Dangerous Mine: ( " + String(x_coord) + ", " + String(y_coord) + " )" );

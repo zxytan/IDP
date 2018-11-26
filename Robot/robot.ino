@@ -3,6 +3,7 @@
 #include "colour_detector.h"
 #include "compass.h"
 
+
 Robot robot;
 
 void setup() {
@@ -13,6 +14,5 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   robot.hello();
 }
