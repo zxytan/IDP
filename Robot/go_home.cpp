@@ -2,7 +2,7 @@
 
 void Robot::go_home(void) {
 	float c_reading = compass.get_heading();
-	if (c_reading == x_max_wall)
+	if (abs(c_reading - x_max_wall) < 5)
 	{
 		turn(y_0_wall,c_reading);
 		go_to_wall();
@@ -21,4 +21,5 @@ void Robot::go_home(void) {
 		turn(y_0_wall, c_reading);
 		go_to_wall();
 	}
+  delay(10000000);
 }

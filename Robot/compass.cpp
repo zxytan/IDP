@@ -19,7 +19,7 @@ void Compass::displaySensorDetails(void) {
 }
 
 void Compass::init(void) {
-  Serial.begin(9600);
+  
   Serial.println("HMC5883 Magnetometer Test"); Serial.println("");
   
   /* Initialise the sensor */
@@ -48,7 +48,7 @@ float Compass::get_heading(void) {
   // Hold the module so that Z is pointing 'up' and you can measure the heading with x&y
   // Calculate heading when the magnetometer is level, then correct for signs of axis.
   //correction using values found in calibration
-  float heading = atan2(event.magnetic.y+14.225, event.magnetic.x-7.225);
+  float heading = atan2(event.magnetic.y+12.135, event.magnetic.x-6.55);
   
   // Once you have your heading, you must then add your 'Declination Angle', which is the 'Error' of the magnetic field in your location.
   // Find yours here: http://www.magnetic-declination.com/

@@ -18,27 +18,25 @@ void Robot::yellow_response(void) {
 
 void Robot::wall_response(void) {
   float c_bearing = compass.get_heading();
-  if (loop_count % 2 == 0) {
-    turn(y_0_wall, c_bearing);
-    motor_control.stop();
-  }
-  else {
-    turn(y_0_wall, c_bearing);
-    motor_control.stop();
-   }
+  turn(y_0_wall, c_bearing);
+  motor_control.stop();
   open_gates();
+  delay(100);
   motor_control.reverse(SPEED);
   delay(1500);
   close_gates();
+  delay(100);
   motor_control.forward(SPEED);
   delay(500);
   c_bearing = compass.get_heading();
   if (loop_count % 2 == 0) {
     turn(x_0_wall, c_bearing);
+    delay(100);
     motor_control.stop();
   }
   else {
     turn(x_max_wall, c_bearing);
+    delay(100);
     motor_control.stop();
   }
   loop_count += 1;
@@ -62,16 +60,16 @@ void Robot::red_response(void) {
 	if (loop_count == 0) {turn(y_max_wall, c_bearing);}
 	  else if (loop_count % 2 == 0) {turn(y_0_wall, c_bearing);}
   	else {turn(y_0_wall, c_bearing);}
-	yellow_in_red();
+	yellow_in_red(700);
   c_bearing = compass.get_heading();
 	if (loop_count % 2 == 0) {turn(x_max_wall, c_bearing);}
   	else {turn(x_0_wall,c_bearing);}
-	yellow_in_red();
+	yellow_in_red(1000);
   c_bearing = compass.get_heading();
 	if (loop_count == 0) {turn(y_0_wall, c_bearing);}
     else if (loop_count % 2 == 0) {turn(y_max_wall, c_bearing);}
   	else {turn(y_max_wall,c_bearing);}
-	yellow_in_red();
+	yellow_in_red(700);
   c_bearing = compass.get_heading();
 	if (loop_count % 2 == 0) {turn(x_max_wall, c_bearing);}
   	else {turn(x_0_wall, c_bearing);}

@@ -1,9 +1,11 @@
 
 #include "robot.h"
 
-void Robot::yellow_in_red(void) {
+void Robot::yellow_in_red(float delay_time) {
 	motor_control.forward(SPEED);
-	for (int i = 0; i <= 15; ++i) {
+  
+	for (int i = 0; i <= 2; ++i) {
+  /*
 	  colour_detector.update_status();
     uint8_t colour_status = colour_detector.get_status();
     switch(colour_status){
@@ -15,7 +17,8 @@ void Robot::yellow_in_red(void) {
 				close_gates();
 				break;
 		}
-		delay(1000);
+   */
+		delay(delay_time);
 	}
 	motor_control.stop();
 }
@@ -23,9 +26,9 @@ void Robot::yellow_in_red(void) {
 void Robot::go_to_wall(void) {
 	motor_control.forward(SPEED);
 	float back_prox = get_prox_reading(BACK_PROX);
-	while (back_prox < length_of_arena) { //numerical number for dist from back of robot to edge
-		get_prox_reading(BACK_PROX);
-		delay(500);
+	while (back_prox < (length_of_arena-5)) { //numerical number for dist from back of robot to edge
+		back_prox = get_prox_reading(BACK_PROX);
+		delay(100);
 	}
 	motor_control.stop();
 
@@ -33,17 +36,17 @@ void Robot::go_to_wall(void) {
 
 void Robot::turn(float target, float initial) {
   float bearing = initial;
-  if (target > initial) {
-    motor_control.rotate_right(250);
+  if (target < initial) {
+    motor_control.rotate_right(SPEED);
     
-    while ((target - bearing) > 4) {
+    while (abs(target - bearing) > 4) {
       bearing = compass.get_heading();
     }
     motor_control.stop();
   }
-  else if (target < initial) {
-    motor_control.rotate_left(250);
-    while ((bearing - target) > 4) {
+  else if (target > initial) {
+    motor_control.rotate_left(SPEED);
+    while (abs(bearing - target) > 4) {
       bearing = compass.get_heading();
     }
   }
@@ -115,7 +118,7 @@ void Robot::open_gates() {  //gates open at the same time
 
 void Robot::close_gates() { //one gate open before the other to stop mines jamming the servos
 
-  servo_right.write(30);
+  servo_right.write(40);
   delay(200);
   servo_left.write(115);
   delay(500);

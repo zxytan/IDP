@@ -29,8 +29,6 @@
 class Robot {
   public:
   	Robot();
-    
-    void init();
     void leave_box();
     void hello();
     
@@ -39,16 +37,16 @@ class Robot {
   	void yellow_response();
   	void wall_response();
   	void go_home();
-  	
+  	void test();
     
   	float get_prox_reading(bool direction); //updates back_prox or left_prox
   	
   private:
   	int loop_count;
-  	float y_max_wall = 260;
-  	float y_0_wall = 80;
+  	float y_max_wall = 263;
+  	float y_0_wall = 83;
   	float x_max_wall = 350;
-  	float x_0_wall = 170;
+  	float x_0_wall = 173;
    
 //  	float back_prox;
 //  	float left_prox;
@@ -59,11 +57,8 @@ class Robot {
   	void close_gates();
     void turn(float target, float initial);
   	void go_to_wall();
-  	void yellow_in_red();
+  	void yellow_in_red(float delay_time);
 
-   
-    uint8_t left_motor_port = 2;
-    uint8_t right_motor_port = 1;
   
   	MotorController motor_control;
     Compass compass;

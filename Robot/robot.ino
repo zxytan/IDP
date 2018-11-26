@@ -4,15 +4,16 @@
 #include "compass.h"
 
 
-Robot robot;
+
+Robot* robot;
 
 void setup() {
-  // put your setup code here, to run once:
-  robot.init();
-  robot.leave_box();
+  robot = new Robot();
+  Serial.begin(9600);
+  
   
 }
 
 void loop() {
-  robot.hello();
+  robot->test();
 }
