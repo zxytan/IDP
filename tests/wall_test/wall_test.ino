@@ -18,7 +18,9 @@ float y_0_wall = 80;
 float x_max_wall = 350;
 float x_0_wall = 170;
 
-MotorController motor_control(1,2);
+long initial;
+
+MotorController motor_control(2,1);
 Compass compass;
 //double bearing = compass.get_heading();
 //double Setpoint;
@@ -87,6 +89,7 @@ void turn(float target, float initial) {
   }
 }
 
+
 void wall_response(void) {
   if (loop_count % 2 == 0) {
     float c_bearing = compass.get_heading();
@@ -130,20 +133,17 @@ void setup() {
   pinMode(ECHO_PIN_2, INPUT);
 
   motor_control.init();
+  initial = get_prox_reading(LEFT);
   
-  compass.init();
-  //double Setpoint = x_max_wall;
-  //motor_PID.SetOutputLimits(-5, +5);
-
-  //turn the PID on
-  //motor_PID.SetMode(AUTOMATIC);
-  motor_control.forward(SPEED);
-  delay(10000);
+  
+  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
-  holla();
-
+  motor_control.forward(SPEED);
+  //delay(3000);
+  //motor_control.reverse(SPEED);
+  delay(1000);
+  motor_control.side_prox_error(initial);
 }

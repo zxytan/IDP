@@ -32,7 +32,7 @@ class Robot {
     
     void init();
     void leave_box();
-    void main_loop();
+    void hello();
     
   	void print_coords();
   	void red_response();
