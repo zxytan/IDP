@@ -72,7 +72,7 @@ void Robot::print_coords(void) {
 }
 
 float Robot::get_prox_reading(bool direction) {
-  long duration;
+  float duration;
   if (direction == BACK_PROX) {
   	digitalWrite(TRIG_PIN, LOW);
   	delayMicroseconds(2);
@@ -91,7 +91,7 @@ float Robot::get_prox_reading(bool direction) {
   
   	duration = pulseIn(ECHO_PIN_2, HIGH);
   }
-  long distance = (duration/2) / 29.1;
+  float distance = (duration/2) / 29.1;
 
   if (distance >= 400 || distance <= 0) {
     Serial.println("Out of range");
@@ -103,15 +103,7 @@ float Robot::get_prox_reading(bool direction) {
     Serial.print(distance);
     Serial.println(" cm");
   }
-/**********i dont think we need this part
-   
-  if (direction == BACK_PROX) {
-    back_prox = distance;
-  }
-  else {
-    left_prox = distance;
-  }
- */ 
+
 }
 
 void Robot::open_gates() {  //gates open at the same time

@@ -3,10 +3,11 @@
 #include "colour_detector.h"
 #include "compass.h"
 
+Robot robot;
 
 void setup() {
   // put your setup code here, to run once:
-  //init();
+  robot.init();
  // leave_box(); - error: leave_box was not declared in this scope 
   
 }

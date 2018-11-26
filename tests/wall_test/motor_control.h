@@ -9,6 +9,9 @@
 #ifndef MOTOR_CONTROL_H_GUARD
 #define MOTOR_CONTROL_H_GUARD
 
+#define TRIG_PIN_2 4
+#define ECHO_PIN_2 5
+
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
@@ -24,13 +27,16 @@ public:
   void rotate_right(uint8_t motor_speed);
   void rotate_left(uint8_t motor_speed);
   void stop();
-  double correction;
+  void side_prox_error(long target);
+  
 
 private:
 
   Adafruit_MotorShield AFMS;
   Adafruit_DCMotor *left_motor;
   Adafruit_DCMotor *right_motor;
+  double correction = 0;
+  
 };
 
 #endif
