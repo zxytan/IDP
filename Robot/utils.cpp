@@ -63,7 +63,7 @@ void Robot::print_coords(void) {
 	float left_prox = get_prox_reading(LEFT_PROX);
 	if (bearing == x_0_wall)
 	{
-		x_coord = length_of_arena - back_prox;
+		x_coord = length_of_arena - back_prox;  //length_of_arena already accounts for robot length
 		y_coord = left_prox - 1.0 + sensor_dist;
 	}
 	else{
