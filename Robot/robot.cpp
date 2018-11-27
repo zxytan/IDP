@@ -2,7 +2,7 @@
 
 void Robot::hello(void) {
   float back_prox = get_prox_reading(BACK_PROX);
-  if (back_prox >= (length_of_arena + 10)) {
+  if (back_prox >= (length_of_arena)) {
     motor_control.stop();
     wall_response();
   }
@@ -12,17 +12,9 @@ void Robot::hello(void) {
 
   colour_detector.update_status();
   uint8_t colour_status = colour_detector.get_status();
-  switch(colour_status){
-    case STATUS_BLACK:
-    case STATUS_RED:
-      Serial.println("Red at index "+String(colour_detector.get_red_index()));
-      break;
-    case STATUS_YELLOW:
-      Serial.println("Yellow");
-      break;
-  }
+
   
-  if (back_prox <= (length_of_arena - 5 )){
+  if (back_prox <= (length_of_arena -15 )){
   switch(colour_status){
     case STATUS_RED:
       motor_control.stop();

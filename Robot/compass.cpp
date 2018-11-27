@@ -41,9 +41,11 @@ float Compass::get_heading(void) {
   mag.getEvent(&event);
  
   /* Display the results (magnetic vector values are in micro-Tesla (uT)) */
+  /*
   Serial.print("X: "); Serial.print(event.magnetic.x); Serial.print("  ");
   Serial.print("Y: "); Serial.print(event.magnetic.y); Serial.print("  ");
   Serial.print("Z: "); Serial.print(event.magnetic.z); Serial.print("  ");Serial.println("uT");
+  */
   // Hold the module so that Z is pointing 'up' and you can measure the heading with x&y
   // Calculate heading when the magnetometer is level, then correct for signs of axis.
   //correction using values found in calibration
@@ -67,8 +69,8 @@ float Compass::get_heading(void) {
   // Convert radians to degrees for readability.
   float headingDegrees = heading * 180/M_PI; 
   
-  Serial.print("Heading (degrees): ");
-  Serial.println(headingDegrees);
+  //Serial.print("Heading (degrees): ");
+  //Serial.println(headingDegrees);
 
   return (headingDegrees);
 }

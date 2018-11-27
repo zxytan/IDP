@@ -18,13 +18,13 @@ int colour_readings[NUM_SENSORS][4] = {{620,1000,458,238},
                                       {647,1000,473,248},
                                       {582,1000,460,260}};
 */
-int colour_readings[NUM_SENSORS][4] = {{683,1000,523,277},
+int colour_readings[NUM_SENSORS][4] = {{683,1000,503,277},
                                       {722,1000,576,328},
-                                      {703,1000,526,301},
+                                      {650,1000,505,301},
                                       {721,1000,538,278},
                                       {647,1000,473,248}};
 
-float colour_weights[4] = {1.0,1.0,1.7,1.0};
+float colour_weights[4] = {1.0,1.0,1.4,1.0};
 
 //SingleSensor class methods
 

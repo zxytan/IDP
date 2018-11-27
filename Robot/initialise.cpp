@@ -3,7 +3,7 @@
 
 Robot::Robot():motor_control(2, 1) {
   
-  loop_count = 0;
+  loop_count = 1;
   
   servo_right.attach(9);
   servo_left.attach(10);
