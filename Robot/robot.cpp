@@ -2,7 +2,7 @@
 
 void Robot::hello(void) {
   float back_prox = get_prox_reading(BACK_PROX);
-  if (back_prox >= (length_of_arena)) {
+  if (back_prox >= (length_of_arena + 10)) {
     motor_control.stop();
     wall_response();
   }
@@ -24,7 +24,7 @@ void Robot::hello(void) {
       break;
   }
   
-  if (back_prox <= (length_of_arena -5 )){
+  if (back_prox <= (length_of_arena - 5 )){
   switch(colour_status){
     case STATUS_RED:
       motor_control.stop();
