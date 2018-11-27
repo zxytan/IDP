@@ -32,8 +32,8 @@ void Robot::wall_response(void) {
   if (loop_count % 2 == 0) { turn(y_max_wall, LEFT); }
   else {turn(y_max_wall, RIGHT); }
   delay(100);
-  motor_control.forward(SPEED)
-  delay(1000)
+  motor_control.forward(SPEED);
+  delay(1000);
   motor_control.stop();
   
   if (loop_count % 2 == 0) {
