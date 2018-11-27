@@ -33,15 +33,10 @@ class Robot {
   	Robot();
     void leave_box();
     void hello();
-    
-  	void print_coords();
-  	void red_response();
-  	void yellow_response();
-  	void wall_response();
   	void go_home();
   	void test();
     
-  	float get_prox_reading(bool direction); //updates back_prox or left_prox
+  	
   	
   private:
   	int loop_count;
@@ -49,9 +44,6 @@ class Robot {
   	float y_0_wall = 83;
   	float x_max_wall = 350;
   	float x_0_wall = 173;
-   
-//  	float back_prox;
-//  	float left_prox;
   	float length_of_arena = 200;
   	float robot_length = 28;
     float robot_width = 20;
@@ -60,6 +52,11 @@ class Robot {
     void turn(float target, bool robot_direction);
   	void go_to_wall();
   	void yellow_in_red(float delay_time);
+    void print_coords();
+    void red_response();
+    void yellow_response();
+    void wall_response();
+    float get_prox_reading(bool direction); //updates back_prox or left_prox
 
   
   	MotorController motor_control;

@@ -16,5 +16,11 @@ void setup() {
 }
 
 void loop() {
-  robot->hello();
+
+  while(millis() < 420000 && loop_count < 8) {
+    robot->hello();
+  }
+  robot->go_home();
+  break;
+  
 }
