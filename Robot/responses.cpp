@@ -13,6 +13,8 @@ void Robot::yellow_response(void) {
 	}
 
 	open_gates();
+  motor_control.forward(SPEED);
+  delay(1000);
 	
 }
 

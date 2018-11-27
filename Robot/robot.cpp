@@ -9,9 +9,11 @@ void Robot::hello(void) {
   float side_prox = get_prox_reading(LEFT_PROX);
   motor_control.side_prox_error(side_prox);
   motor_control.forward(SPEED);
-  /*
+  
   colour_detector.update_status();
   uint8_t colour_status = colour_detector.get_status();
+  Serial.println(colour_status);
+  if (back_prox <= (length_of_arena -5 )){
   switch(colour_status){
     case STATUS_RED:
       motor_control.stop();
@@ -42,7 +44,7 @@ void Robot::hello(void) {
     
       break;
   }
-  */
+  }
   delay(100);
 }
 

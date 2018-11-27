@@ -20,7 +20,7 @@
 #define YELLOW_MAX 600
 #define RED_MIN 700
 #define RED_MAX 800
-#define SPEED 250 
+#define SPEED 200 
 #define BACK_PROX false
 #define LEFT_PROX true
 

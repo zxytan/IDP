@@ -8,14 +8,14 @@
 #define ESTIMATE_RED 2
 #define ESTIMATE_YELLOW 3
 
-float sensor_change_time = 0.5;
-int colour_readings[NUM_SENSORS][4] = {{600,380,470,310},
-                                      {600,380,470,310},
-                                      {600,380,470,310},
-                                      {600,380,470,310},
-                                      {600,380,470,310},
-                                      {600,380,470,310},
-                                      {600,380,470,310}};
+float sensor_change_time = 0.2;
+int colour_readings[NUM_SENSORS][4] = {{513,1000,362,213},
+                                      {513,1000,381,220},
+                                      {553,1000,428,235},
+                                      {571,1000,453,272},
+                                      {591,1000,429,247},
+                                      {504,1000,208,380},
+                                      {448,1000,336,197}};
 
 //SingleSensor class methods
 
@@ -24,7 +24,6 @@ SingleSensor::SingleSensor():timer(0),change_time(sensor_change_time),
 
 void SingleSensor::update_estimate(float dt){
 	uint8_t new_estimate = get_closest_reading(analogRead(pin));
-	Serial.println(analogRead(pin));
 	if(new_estimate != current_estimate){
 		current_estimate = new_estimate;
 		if(current_estimate != verified_estimate){
