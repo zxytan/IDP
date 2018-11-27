@@ -19,10 +19,7 @@ void Robot::yellow_response(void) {
 }
 
 void Robot::wall_response(void) {
-  if (loop_count % 2 == 0) { turn(y_0_wall, RIGHT); }
-  else {turn(y_0_wall, LEFT); }
-  delay(100);
-  motor_control.stop();
+
   open_gates();
   delay(100);
   motor_control.reverse(SPEED);
@@ -30,14 +27,22 @@ void Robot::wall_response(void) {
   close_gates();
   delay(100);
   motor_control.forward(SPEED);
-  delay(500);
+  delay(1000);
+
+  if (loop_count % 2 == 0) { turn(y_max_wall, LEFT); }
+  else {turn(y_max_wall, RIGHT); }
+  delay(100);
+  motor_control.forward(SPEED);
+  delay(1000);
+  motor_control.stop();
+  
   if (loop_count % 2 == 0) {
-    turn(x_0_wall, RIGHT);
+    turn(x_0_wall, LEFT);
     delay(100);
     motor_control.stop();
   }
   else {
-    turn(x_max_wall, LEFT);
+    turn(x_max_wall, RIGHT);
     delay(100);
     motor_control.stop();
   }
