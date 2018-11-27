@@ -26,7 +26,7 @@ void Robot::leave_box() {
   close_gates();
   turn(y_max_wall, LEFT);
 	motor_control.forward(SPEED);
-	delay(1100);
+	delay(2000);
 	motor_control.stop();
   turn(x_max_wall, RIGHT);
   motor_control.forward(SPEED);

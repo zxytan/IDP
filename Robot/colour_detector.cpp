@@ -8,7 +8,7 @@
 #define ESTIMATE_RED 2
 #define ESTIMATE_YELLOW 3
 
-float sensor_change_time = 0.3;
+float sensor_change_time = 0.2;
 /*
 int colour_readings[NUM_SENSORS][4] = {{620,1000,458,238},
                                       {683,1000,523,277},

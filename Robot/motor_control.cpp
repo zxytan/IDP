@@ -23,7 +23,7 @@ void MotorController::side_prox_error(long target) {
 
   int error = target - distance;
 
-  correction = error*Kp;
+  correction = -error*Kp;
 }
 void MotorController::forward(uint8_t motor_speed){
   left_motor->setSpeed(motor_speed);

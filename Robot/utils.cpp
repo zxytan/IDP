@@ -5,6 +5,8 @@ void Robot::yellow_in_red(float delay_time) {
 	motor_control.forward(SPEED);
   
 	for (int i = 0; i <= 2; ++i) {
+    open_gates();
+    /*
 	  colour_detector.update_status();
     uint8_t colour_status = colour_detector.get_status();
     switch(colour_status){
@@ -16,8 +18,10 @@ void Robot::yellow_in_red(float delay_time) {
 				close_gates();
 				break;
 		}
+   */
 		delay(delay_time);
 	}
+  close_gates();
 	motor_control.stop();
 }
 
@@ -35,15 +39,15 @@ void Robot::go_to_wall(void) {
 void Robot::turn(float target, bool robot_direction) {
   float bearing = compass.get_heading();
   if (robot_direction == RIGHT) {
-    motor_control.rotate_right(SPEED); 
-    while (abs(bearing - (compass.get_heading())) > 4) {
+    motor_control.rotate_left(SPEED); 
+    while (abs(bearing - target) > 4) {
       bearing = compass.get_heading();
     }
     motor_control.stop();
   }
   else if (robot_direction == LEFT) {
-    motor_control.rotate_left(SPEED);
-    while (abs(bearing - (compass.get_heading())) > 4) {
+    motor_control.rotate_right(SPEED);
+    while (abs(bearing - target) > 4) {
       bearing = compass.get_heading();
     }
   }
