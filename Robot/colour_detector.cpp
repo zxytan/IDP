@@ -8,14 +8,23 @@
 #define ESTIMATE_RED 2
 #define ESTIMATE_YELLOW 3
 
-float sensor_change_time = 0.2;
-int colour_readings[NUM_SENSORS][4] = {{513,1000,362,213},
-                                      {513,1000,381,220},
-                                      {553,1000,428,235},
-                                      {571,1000,453,272},
-                                      {591,1000,429,247},
-                                      {504,1000,208,380},
-                                      {448,1000,336,197}};
+float sensor_change_time = 0.3;
+/*
+int colour_readings[NUM_SENSORS][4] = {{620,1000,458,238},
+                                      {683,1000,523,277},
+                                      {722,1000,576,328},
+                                      {703,1000,526,301},
+                                      {721,1000,538,278},
+                                      {647,1000,473,248},
+                                      {582,1000,460,260}};
+*/
+int colour_readings[NUM_SENSORS][4] = {{683,1000,523,277},
+                                      {722,1000,576,328},
+                                      {703,1000,526,301},
+                                      {721,1000,538,278},
+                                      {647,1000,473,248}};
+
+float colour_weights[4] = {1.0,1.0,1.7,1.0};
 
 //SingleSensor class methods
 
@@ -44,7 +53,7 @@ uint8_t SingleSensor::get_closest_reading(int reading){
 	int dif = 0;
 	int min_dif_index = 0;
 	for(int i=0;i<4;i++){
-		dif = abs(colour_readings[pin-START_PIN][i] - reading);
+		dif = abs(colour_readings[pin-START_PIN][i] - reading) * colour_weights[i];
 		if(dif<min_dif){
 			min_dif = dif;
 			min_dif_index = i;
