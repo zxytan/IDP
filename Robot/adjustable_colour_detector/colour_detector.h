@@ -28,8 +28,8 @@
 
 #include <inttypes.h>
 
-#define START_PIN 10
-#define NUM_SENSORS 5
+#define START_PIN 9
+#define NUM_SENSORS 7
 
 //Yellow has highest priority, with decreasing priority down to black
 #define STATUS_YELLOW 3
@@ -47,11 +47,13 @@ public:
 	
 private:
 
+  void move_towards_black_reading(int reading,float dt);
 	uint8_t get_closest_reading(int reading);
 
 	uint8_t pin;
 	float timer;
 	float change_time;
+  int black_reading;
 	uint8_t current_estimate;
 	uint8_t verified_estimate;
 };

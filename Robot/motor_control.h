@@ -36,7 +36,7 @@ private:
   Adafruit_DCMotor *left_motor;
   Adafruit_DCMotor *right_motor;
   double correction = 0;
-  
+
 };
 
 #endif
