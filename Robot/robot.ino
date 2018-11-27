@@ -10,11 +10,11 @@ Robot* robot;
 void setup() {
   robot = new Robot();
   Serial.begin(9600);
-  //robot->leave_box();
+  robot->leave_box();
   
   
 }
 
 void loop() {
-  robot->hello();
+  //robot->hello();
 }

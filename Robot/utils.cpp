@@ -5,7 +5,6 @@ void Robot::yellow_in_red(float delay_time) {
 	motor_control.forward(SPEED);
   
 	for (int i = 0; i <= 2; ++i) {
-  /*
 	  colour_detector.update_status();
     uint8_t colour_status = colour_detector.get_status();
     switch(colour_status){
@@ -17,7 +16,6 @@ void Robot::yellow_in_red(float delay_time) {
 				close_gates();
 				break;
 		}
-   */
 		delay(delay_time);
 	}
 	motor_control.stop();
@@ -54,7 +52,7 @@ void Robot::turn(float target, float initial) {
 
 void Robot::print_coords(void) {
 
-  uint8_t sensor_number = colour_detector.get_red_index();  // assuming 0 at left edge
+  uint8_t sensor_number = colour_detector.get_red_index() + 1 ;  // assuming 0 at left edge
 	float sensor_dist = 3.5 * sensor_number; //dist between sensors * sensor number ---- distance from ultrasound sensor
 	int y_coord;
 	int x_coord;

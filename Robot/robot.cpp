@@ -14,8 +14,6 @@ void Robot::hello(void) {
   uint8_t colour_status = colour_detector.get_status();
   switch(colour_status){
     case STATUS_BLACK:
-      Serial.println("Black");
-      break;
     case STATUS_RED:
       Serial.println("Red at index "+String(colour_detector.get_red_index()));
       break;
@@ -60,5 +58,15 @@ void Robot::hello(void) {
 }
 
 void Robot::test() {
-  go_home();
+  float c_bearing = compass.get_heading();
+  turn(y_max_wall, c_bearing);
+  delay(1000);
+  c_bearing = compass.get_heading();
+  turn(y_0_wall, c_bearing);
+  delay(1000);
+  c_bearing = compass.get_heading();
+  turn(x_0_wall, c_bearing);
+  delay(1000);
+  c_bearing = compass.get_heading();
+  turn(x_max_wall, c_bearing);
 }
