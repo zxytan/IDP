@@ -24,16 +24,11 @@ Robot::Robot():motor_control(2, 1) {
 
 void Robot::leave_box() {
   close_gates();
-  float c_bearing = compass.get_heading();
-  motor_control.rotate_right(SPEED);
-  while (abs(c_bearing - y_max_wall) > 4) {
-     c_bearing = compass.get_heading();
-  }
+  turn(y_max_wall, LEFT);
 	motor_control.forward(SPEED);
-	delay(1000);
+	delay(1100);
 	motor_control.stop();
-  c_bearing = compass.get_heading();
-  turn(x_max_wall, c_bearing);
+  turn(x_max_wall, RIGHT);
   motor_control.forward(SPEED);
   delay(3000);
   motor_control.stop();

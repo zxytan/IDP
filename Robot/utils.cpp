@@ -32,19 +32,18 @@ void Robot::go_to_wall(void) {
 
 }
 
-void Robot::turn(float target, float initial) {
-  float bearing = initial;
-  if (target < initial) {
-    motor_control.rotate_right(SPEED);
-    
-    while (abs(target - bearing) > 4) {
+void Robot::turn(float target, bool robot_direction) {
+  float bearing = compass.get_heading();
+  if (robot_direction == RIGHT) {
+    motor_control.rotate_right(SPEED); 
+    while (abs(bearing - (compass.get_heading())) > 4) {
       bearing = compass.get_heading();
     }
     motor_control.stop();
   }
-  else if (target > initial) {
+  else if (robot_direction == LEFT) {
     motor_control.rotate_left(SPEED);
-    while (abs(bearing - target) > 4) {
+    while (abs(bearing - (compass.get_heading())) > 4) {
       bearing = compass.get_heading();
     }
   }

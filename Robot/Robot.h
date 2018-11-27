@@ -23,6 +23,8 @@
 #define SPEED 200 
 #define BACK_PROX false
 #define LEFT_PROX true
+#define LEFT true
+#define RIGHT false
 
 
 
@@ -55,7 +57,7 @@ class Robot {
     float robot_width = 20;
   	void open_gates();
   	void close_gates();
-    void turn(float target, float initial);
+    void turn(float target, bool robot_direction);
   	void go_to_wall();
   	void yellow_in_red(float delay_time);
 
