@@ -41,14 +41,13 @@ float Compass::get_heading(void) {
   mag.getEvent(&event);
  
   /* Display the results (magnetic vector values are in micro-Tesla (uT)) */
-/*  Serial.print("X: "); Serial.print(event.magnetic.x); Serial.print("  ");
+  Serial.print("X: "); Serial.print(event.magnetic.x); Serial.print("  ");
   Serial.print("Y: "); Serial.print(event.magnetic.y); Serial.print("  ");
   Serial.print("Z: "); Serial.print(event.magnetic.z); Serial.print("  ");Serial.println("uT");
-*/
   // Hold the module so that Z is pointing 'up' and you can measure the heading with x&y
   // Calculate heading when the magnetometer is level, then correct for signs of axis.
   //correction using values found in calibration
-  float heading = atan2(event.magnetic.y+12.135, event.magnetic.x-6.55);
+  float heading = atan2(event.magnetic.y+4.955, event.magnetic.x-2.045);
   
   // Once you have your heading, you must then add your 'Declination Angle', which is the 'Error' of the magnetic field in your location.
   // Find yours here: http://www.magnetic-declination.com/
