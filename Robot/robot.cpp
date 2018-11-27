@@ -12,9 +12,10 @@ void Robot::hello(void) {
 
   colour_detector.update_status();
   uint8_t colour_status = colour_detector.get_status();
-
+  Serial.print(String(back_prox)+"|");
+  Serial.print(String(side_prox)+"|");
+  Serial.println("");
   
-  if (back_prox <= (length_of_arena -15 )){
   switch(colour_status){
     case STATUS_RED:
       motor_control.stop();
@@ -44,7 +45,6 @@ void Robot::hello(void) {
       yellow_response();
     
       break;
-  }
   }
 
 }

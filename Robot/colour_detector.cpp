@@ -8,7 +8,7 @@
 #define ESTIMATE_RED 2
 #define ESTIMATE_YELLOW 3
 
-float sensor_change_time = 0.2;
+float sensor_change_time = 0.1;
 /*
 int colour_readings[NUM_SENSORS][4] = {{620,1000,458,238},
                                       {683,1000,523,277},
@@ -18,14 +18,14 @@ int colour_readings[NUM_SENSORS][4] = {{620,1000,458,238},
                                       {647,1000,473,248},
                                       {582,1000,460,260}};
 */
-int colour_readings[NUM_SENSORS][4] = {{683,1000,503,277},
-                                      {722,1000,576,328},
-                                      {650,1000,505,301},
-                                      {721,1000,538,278},
-                                      {647,1000,473,248}};
+int colour_readings[NUM_SENSORS][4] = {{707,1000,525,280},
+                                      {765,1000,582,310},
+                                      {742,1000,564,323},
+                                      {737,1000,534,283},
+                                      {678,1000,458,240}};
 
 
-float colour_weights[4] = {1.0,1.0,1.4,1.0};
+float colour_weights[4] = {1.0,1.0,1.0,1.0};
 
 //SingleSensor class methods
 
@@ -82,6 +82,7 @@ void ColourDetector::update_status(){
 	
 	for(int i=0;i<NUM_SENSORS;i++){
 		sensors[i].update_estimate(dt);
+    Serial.print(String(sensors[i].get_estimate())+"|");
 	}
 	
 	//Update status
