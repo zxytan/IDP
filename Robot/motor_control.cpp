@@ -12,7 +12,6 @@ void MotorController::init(){
 
 void MotorController::side_prox_error(long target) {
   float Kp = 3;
-  
   digitalWrite(TRIG_PIN_2, LOW);
   delayMicroseconds(2);
   digitalWrite(TRIG_PIN_2, HIGH);
@@ -23,6 +22,9 @@ void MotorController::side_prox_error(long target) {
   float distance = (duration/2) / 29.1;
 
   int error = target - distance;
+
+  float bearing = compass.get_heading();
+  
   
   correction = -error*Kp;
 }
