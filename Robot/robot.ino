@@ -22,5 +22,7 @@ void loop() {
   }
   robot->go_home();
   break;
+
+  //robot->emergency();
   
 }
