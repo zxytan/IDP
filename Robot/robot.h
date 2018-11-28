@@ -34,7 +34,7 @@ class Robot {
     void leave_box();
     void hello();
   	void go_home();
-  	void test();
+  	void emergency();
     
   	int loop_count;
   	

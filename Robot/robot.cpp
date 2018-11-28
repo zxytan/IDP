@@ -54,16 +54,14 @@ void Robot::hello(void) {
 
 }
 
-void Robot::test() {
-  float c_bearing = compass.get_heading();
-  turn(y_max_wall, c_bearing);
-  delay(1000);
-  c_bearing = compass.get_heading();
-  turn(y_0_wall, c_bearing);
-  delay(1000);
-  c_bearing = compass.get_heading();
-  turn(x_0_wall, c_bearing);
-  delay(1000);
-  c_bearing = compass.get_heading();
-  turn(x_max_wall, c_bearing);
+void Robot::emergency() {
+  close_gates();
+  motor_control.forward(SPEED);
+  delay(6000);
+  motor_control.stop();
+  turn(x_0_wall, LEFT);
+  delay(100);
+  motor_control.forward(SPEED);
+  delay(6000);
+  motor_control.stop();
 }

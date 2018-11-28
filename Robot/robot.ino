@@ -21,6 +21,9 @@ void loop() {
     robot->hello();
   }
   robot->go_home();
+
+  //robot->emergency();
+  
   while(1){}
   
 }
