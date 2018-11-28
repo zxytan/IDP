@@ -15,9 +15,9 @@ void setup() {
 
 void loop() {
 
-  //robot->emergency();
+  robot->emergency();
   //robot->test();
-
+/*
   long robot_time = millis();
   while(robot_time < 420000) {
     if(robot->hello()){
@@ -30,7 +30,7 @@ void loop() {
   robot->go_home();
   
   while(1){}
-  
+  */
   
   
 }
