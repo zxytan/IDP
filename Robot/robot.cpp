@@ -6,15 +6,13 @@ void Robot::hello(void) {
     motor_control.stop();
     wall_response();
   }
-  float side_prox = get_prox_reading(LEFT_PROX);
-  motor_control.side_prox_error(side_prox);
+  motor_control.side_prox_error(200-loop_count*20);
   motor_control.forward(SPEED);
 
   colour_detector.update_status();
   uint8_t colour_status = colour_detector.get_status();
-  Serial.print(String(back_prox)+"|");
-  Serial.print(String(side_prox)+"|");
-  Serial.println("");
+  Serial.print(String(back_prox)+"|"); // what is this for???
+  Serial.println(String(side_prox)+"|");
   
   switch(colour_status){
     case STATUS_RED:
