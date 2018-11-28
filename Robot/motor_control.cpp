@@ -23,9 +23,6 @@ void MotorController::side_prox_error(long target) {
 
   int error = target - distance;
 
-  float bearing = compass.get_heading();
-  
-  
   correction = -error*Kp;
 }
 void MotorController::compass_error(int loop_count,float current_heading){

@@ -36,10 +36,9 @@ class Robot {
   	void go_home();
   	void test();
     
-  	
+  	int loop_count;
   	
   private:
-  	int loop_count;
   	float y_max_wall = 263;
   	float y_0_wall = 83;
   	float x_max_wall = 350;

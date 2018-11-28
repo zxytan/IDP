@@ -66,15 +66,15 @@ void Robot::red_response(void) {
 	if (loop_count == 0) {turn(y_max_wall, LEFT);}
 	  else if (loop_count % 2 == 0) {turn(y_0_wall, RIGHT);}
   	else {turn(y_0_wall, LEFT);}
-	yellow_in_red(700);
+	yellow_in_red(350);
 	if (loop_count == 0) {turn(x_max_wall, RIGHT);}
     else if (loop_count % 2 == 0) {turn(x_max_wall, LEFT);}
     else {turn(x_0_wall, RIGHT);}
-	yellow_in_red(1000);
+	yellow_in_red(500);
 	if (loop_count == 0) {turn(y_0_wall, RIGHT);}
     else if (loop_count % 2 == 0) {turn(y_max_wall, LEFT);}
   	else {turn(y_max_wall,RIGHT);}
-	yellow_in_red(700);
+	yellow_in_red(350);
 	  if (loop_count == 0) {turn(x_max_wall, LEFT);}
     else if (loop_count % 2 == 0) {turn(x_max_wall, RIGHT);}
   	else {turn(x_0_wall, LEFT);}

@@ -17,10 +17,10 @@ void setup() {
 
 void loop() {
 
-  while(millis() < 420000 && loop_count < 8) {
+  while(millis() < 420000 && robot->loop_count < 6) {
     robot->hello();
   }
   robot->go_home();
-  break;
+  while(1){}
   
 }

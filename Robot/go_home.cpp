@@ -9,7 +9,7 @@ void Robot::go_home(void) {
 	}
 	else 
 	{
-		if (loop_count < 8 )
+		if (loop_count < 6 )
 		{ 
 			turn(y_max_wall, RIGHT);
 			go_to_wall();
