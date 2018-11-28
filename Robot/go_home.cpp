@@ -19,5 +19,4 @@ void Robot::go_home(void) {
 		turn(y_0_wall, LEFT);
 		go_to_wall();
 	}
-  delay(10000000);
 }

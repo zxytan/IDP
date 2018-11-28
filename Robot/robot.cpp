@@ -7,15 +7,18 @@ void Robot::hello(void) {
     wall_response();
   }
   float side_prox = get_prox_reading(LEFT_PROX);
-  motor_control.side_prox_error(side_prox);
+  //motor_control.side_prox_error(side_prox);
+  float current_heading = compass.get_heading();
+  Serial.println(current_heading);
+  motor_control.compass_error(loop_count,current_heading);
   motor_control.forward(SPEED);
 
   colour_detector.update_status();
   uint8_t colour_status = colour_detector.get_status();
-  Serial.print(String(back_prox)+"|");
-  Serial.print(String(side_prox)+"|");
-  Serial.println("");
-  
+
+  if(back_prox>length_of_arena-30 || side_prox<30 || side_prox>length_of_arena-30){
+    return;
+  }
   switch(colour_status){
     case STATUS_RED:
       motor_control.stop();

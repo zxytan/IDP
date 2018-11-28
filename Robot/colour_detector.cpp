@@ -82,7 +82,6 @@ void ColourDetector::update_status(){
 	
 	for(int i=0;i<NUM_SENSORS;i++){
 		sensors[i].update_estimate(dt);
-    Serial.print(String(sensors[i].get_estimate())+"|");
 	}
 	
 	//Update status

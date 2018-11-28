@@ -28,7 +28,7 @@ public:
   void rotate_left(uint8_t motor_speed);
   void stop();
   void side_prox_error(long target);
-  
+  void compass_error(int loop_count,float current_bearing);
 
 private:
 

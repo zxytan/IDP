@@ -3,24 +3,10 @@
 
 void Robot::yellow_in_red(float delay_time) {
 	motor_control.forward(SPEED);
+  open_gates();
+
+	delay(delay_time);
   
-	for (int i = 0; i <= 2; ++i) {
-    open_gates();
-
-	  colour_detector.update_status();
-    uint8_t colour_status = colour_detector.get_status();
-    switch(colour_status){
-      case STATUS_YELLOW:
-				yellow_response();
-				motor_control.forward(SPEED);
-				delay(10000);
-				i += 10;
-				close_gates();
-				break;
-		}
-
-		delay(delay_time);
-	}
   close_gates();
 	motor_control.stop();
 }
