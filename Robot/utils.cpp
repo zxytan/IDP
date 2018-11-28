@@ -1,19 +1,24 @@
 
 #include "robot.h"
 
-void Robot::yellow_in_red(float delay_time) {
+void Robot::yellow_in_red(int delay_time) {
+  delay(500);
 	motor_control.forward(SPEED);
-  open_gates();
-
-	delay(delay_time);
-  
-  close_gates();
+  long start_time = millis();
+  while(millis()-start_time<delay_time){
+    float current_heading = compass.get_heading();
+    motor_control.compass_error(loop_count,current_heading);
+    delay(100);
+  }
 	motor_control.stop();
 }
 
 void Robot::go_to_wall(void) {
-	motor_control.forward(SPEED);
+	
 	float back_prox = get_prox_reading(BACK_PROX);
+  float current_heading = compass.get_heading();
+  motor_control.compass_error(loop_count,current_heading);
+  motor_control.forward(SPEED);
 	while (back_prox < (length_of_arena-5)) { //numerical number for dist from back of robot to edge
 		back_prox = get_prox_reading(BACK_PROX);
 		delay(100);
@@ -61,9 +66,9 @@ void Robot::print_coords(void) {
 	Serial.println("Dangerous Mine: ( " + String(x_coord) + ", " + String(y_coord) + " )" );
 }
 
-float Robot::get_prox_reading(bool direction) {
+float Robot::get_prox_reading(bool robot_direction) {
   float duration;
-  if (direction == BACK_PROX) {
+  if (robot_direction == BACK_PROX) {
   	digitalWrite(TRIG_PIN, LOW);
   	delayMicroseconds(2);
   	digitalWrite(TRIG_PIN, HIGH);
@@ -86,14 +91,13 @@ float Robot::get_prox_reading(bool direction) {
   if (distance >= 400 || distance <= 0) {
    // Serial.println("Out of range");
     //Serial.println(distance);
-	get_prox_reading(direction);
-	return(distance);
+	  distance = get_prox_reading(robot_direction);
   }
   else {
    // Serial.print(distance);
    // Serial.println(" cm");
   }
-
+  return(distance);
 }
 
 void Robot::open_gates() {  //gates open at the same time

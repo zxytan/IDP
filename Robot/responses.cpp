@@ -3,7 +3,7 @@
 
 void Robot::yellow_response(void) {
 	delay(3000); //stationary wait for 3 seconds
-
+  
 	//flash yellow LED for 2 seconds 
 	for (int i=0; i<= 4; ++i) {
 		digitalWrite(YELLOW_LED, HIGH);
@@ -12,9 +12,12 @@ void Robot::yellow_response(void) {
 		delay(250);
 	}
 
+  motor_control.reverse(150);
+  delay(500);
 	open_gates();
   motor_control.forward(SPEED);
   delay(1000);
+  close_gates();
 	
 }
 
@@ -51,7 +54,7 @@ void Robot::wall_response(void) {
 }
 
 void Robot::red_response(void) {
-	delay(3000); //stationary wait for 3 seconds
+	delay(1000); //stationary wait for 3 seconds
 
 	//flash red LED for 2 seconds 
 	for (int i = 0; i <= 4; ++i) {
@@ -62,20 +65,25 @@ void Robot::red_response(void) {
 	}
 
 	print_coords();
+
+  motor_control.reverse(150);
+  delay(500);
+  
 	close_gates();
 	if (loop_count == 0) {turn(y_max_wall, LEFT);}
 	  else if (loop_count % 2 == 0) {turn(y_0_wall, RIGHT);}
   	else {turn(y_0_wall, LEFT);}
-	yellow_in_red(350);
+	yellow_in_red(2500);
 	if (loop_count == 0) {turn(x_max_wall, RIGHT);}
     else if (loop_count % 2 == 0) {turn(x_max_wall, LEFT);}
     else {turn(x_0_wall, RIGHT);}
-	yellow_in_red(500);
+	yellow_in_red(4000);
 	if (loop_count == 0) {turn(y_0_wall, RIGHT);}
     else if (loop_count % 2 == 0) {turn(y_max_wall, LEFT);}
   	else {turn(y_max_wall,RIGHT);}
-	yellow_in_red(350);
+	yellow_in_red(2500);
 	  if (loop_count == 0) {turn(x_max_wall, LEFT);}
     else if (loop_count % 2 == 0) {turn(x_max_wall, RIGHT);}
   	else {turn(x_0_wall, LEFT);}
+
 }

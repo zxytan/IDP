@@ -37,7 +37,7 @@ void MotorController::compass_error(int loop_count,float current_heading){
   }else{
     error = (bearing-173);
   }
-  correction = -5 * error; //Adjust factor as necessary
+  correction = -4 * error; //Adjust factor as necessary
 }
 
 void MotorController::forward(uint8_t motor_speed){

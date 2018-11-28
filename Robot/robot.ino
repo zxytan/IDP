@@ -11,19 +11,26 @@ void setup() {
   robot = new Robot();
   Serial.begin(9600);
   robot->leave_box();
-  
-  
 }
 
 void loop() {
 
-  while(millis() < 420000 && robot->loop_count < 6) {
-    robot->hello();
-  }
-  robot->go_home();
-
   //robot->emergency();
+  //robot->test();
+
+  long robot_time = millis();
+  while(robot_time < 420000) {
+    if(robot->hello()){
+      robot_time = 420001;
+    }else{
+      robot_time = millis();
+    }
+  }
+  Serial.println("going home");
+  robot->go_home();
   
   while(1){}
+  
+  
   
 }

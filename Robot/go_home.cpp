@@ -2,21 +2,30 @@
 
 void Robot::go_home(void) {
 	float c_reading = compass.get_heading();
-	if (abs(c_reading - x_max_wall) < 5)
+	float back_prox = get_prox_reading(BACK_PROX);
+	if (abs(c_reading - x_0_wall) < 80)
 	{
-		turn(y_0_wall,RIGHT);
-		go_to_wall();
+    if(back_prox<length_of_arena-5){
+      go_to_wall();
+    }
+    turn(y_0_wall, LEFT);
+    if(back_prox<length_of_arena-5){
+      go_to_wall();
+    }
 	}
 	else 
-	{
-		if (loop_count < 6 )
-		{ 
-			turn(y_max_wall, RIGHT);
-			go_to_wall();
-			turn(x_0_wall, LEFT);
-		}
-		go_to_wall();
-		turn(y_0_wall, LEFT);
-		go_to_wall();
+	{ 
+		if(back_prox<length_of_arena-5){
+      go_to_wall();
+    }
+   turn(y_0_wall,RIGHT);
+    if(back_prox<length_of_arena-5){
+      go_to_wall();
+    }
+    turn(x_0_wall, RIGHT);
+    if(back_prox<length_of_arena-5){
+      go_to_wall();
+    }
 	}
+ 
 }

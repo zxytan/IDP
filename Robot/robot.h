@@ -32,9 +32,10 @@ class Robot {
   public:
   	Robot();
     void leave_box();
-    void hello();
+    bool hello();
   	void go_home();
   	void emergency();
+    void test();
     
   	int loop_count;
   	
@@ -50,12 +51,12 @@ class Robot {
   	void close_gates();
     void turn(float target, bool robot_direction);
   	void go_to_wall();
-  	void yellow_in_red(float delay_time);
+  	void yellow_in_red(int delay_time);
     void print_coords();
     void red_response();
     void yellow_response();
     void wall_response();
-    float get_prox_reading(bool direction); //updates back_prox or left_prox
+    float get_prox_reading(bool robot_direction); //updates back_prox or left_prox
 
   
   	MotorController motor_control;
